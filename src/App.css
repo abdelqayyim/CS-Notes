@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+.my-cs-notes{
+  color: white;
+  font-size: 6rem;
+  font-family: 'Ubuntu';
+  text-align: center;
+  font-weight: bold;
+}

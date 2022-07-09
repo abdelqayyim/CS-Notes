@@ -1,0 +1,18 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.languages-box{
+    width: 100%;
+    height: 3rem;
+    overflow: scroll;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+.languages-box::-webkit-scrollbar {
+    display: none;
+}
+

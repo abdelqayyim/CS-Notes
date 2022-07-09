@@ -1,0 +1,26 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.btn{
+    position: relative;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-size: 1.5vw;
+    font-family:'Bitter', sans-serif;
+    font-weight: bolder;
+    padding: 5px 10px;
+    border: none;
+    background-color:#3898ec;
+    color: white;
+    transition-timing-function: ease-out;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.btn:hover{
+    transform: scale(1.1);
+}
