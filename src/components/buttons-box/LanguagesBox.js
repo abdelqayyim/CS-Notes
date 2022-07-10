@@ -1,41 +1,37 @@
-import React, {useState, useCallback, useEffect} from 'react'; 
+import React, {useState, useCallback, useEffect, useContext} from 'react'; 
 import './LanguagesBox.css';
 
 import LanguageButton from '../button/LanguageButton';
 
 import Message from '../message-popup/Message';
+import { AppProvider } from '../../AppContext';
 
 const LanguagesBox = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [languages, setLanguages] = useState([]);
     
+    const curr = useContext(AppProvider);
 
     const fetchLanguagesHandler = useCallback(async () => {
-        setIsLoading(true); // change the state when you start to load
+        curr.showSpinner(); //equivalent to setting isLoading to true
+        curr.updateMessage('Loading Data')
         const response = await fetch('https://frequentquestions.herokuapp.com/languages/')
         const data = await response.json();
         
-        // for (let lang of data) {
-        //    languages.push(lang.name);
-        // }
         setLanguages(data.reverse())
         
-        setIsLoading(false); // after loading the data
-        console.log(languages);
+        curr.hideSpinner();
+        curr.updateMessage(null)
     }, [])
     
     useEffect(() => {
         fetchLanguagesHandler();
     }, [fetchLanguagesHandler])
-    console.log(languages);
 
 
 
     return (
         <div className='languages-box'>
-            {isLoading && <Message message={ 'Loading Data'} />}
-            {languages.length === 0 && !isLoading && <p>No languages</p>}
-            
             {languages.map(language => {
                 return <LanguageButton name={language.name} key={language._id} moveUp={props.moveUp} />
             })}

@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import './App.css';
 import Background from './components/Background';
 import LanguagesBox from './components/buttons-box/LanguagesBox';
+import NoteDisplay from './components/note-display/NoteDisplay';
+
+import AppContext from './AppContext';
 
 //TODO: add a class 'move-up' to Background when a language is clicked
 //TASK: add move-up class when button is clicked
@@ -14,10 +17,14 @@ function App() {
   }
 
   return (
-    <Background className={move === true ? 'background move-up' : 'background'}>
-      <p className='my-cs-notes'>My CS Notes</p>
-      <LanguagesBox moveUp={ moveUp} />
-   </Background>
+    <AppContext>
+      <Background className={move === true ? 'background move-up' : 'background'}>
+        <p className='my-cs-notes'>My CS Notes</p>
+        <LanguagesBox moveUp={moveUp} />
+        <NoteDisplay/>
+      </Background>
+    </AppContext>
+    
   );
 }
 

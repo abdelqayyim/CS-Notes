@@ -1,34 +1,32 @@
-import React, {useEffect, useCallback, useState} from 'react'; 
+import React, {useCallback, useContext} from 'react'; 
 import './LanguageButton.css';
 
-const LanguageButton = (props) => {
+import { AppProvider } from '../../AppContext';
 
-    const [isLoading, setIsLoading] = useState(true);
-    const [notes, setNotes] = useState([]);
-    
+
+const LanguageButton = (props) => {
+    const curr = useContext(AppProvider);
+
 
     const fetchNotes = useCallback(async (language) => {
-        setIsLoading(true); // change the state when you start to load
+        curr.showSpinner(); //equivalent to setting isLoading to true
+        curr.updateMessage('Loading Notes');
         const response = await fetch(`https://frequentquestions.herokuapp.com/languages/${language}/getNotes`)
         const data = await response.json();
-        
-        setNotes(data.reverse())
-        
-        setIsLoading(false); // after loading the data
-        console.log(data);
+        //update the global variable
+        curr.updateNotes(data.reverse());
+        curr.updateLanguage(props.name);
+        curr.hideSpinner(); //equivalent to setting isLoading to true
+        console.log(curr)
     }, [])
-    
-    useEffect(() => {
+
+    const languageButtonHandler = () => {
+        props.moveUp();
         fetchNotes(props.name);
-    }, [fetchNotes])
-    console.log(notes);
-
-
+    }
+    
     return (
-        <button className='btn' onClick={() => {
-            props.moveUp();
-            fetchNotes(props.name);
-        }} name={props.name} id={props._id}>
+         <button className='btn' onClick={languageButtonHandler} name={props.name} id={props._id}>
             {props.name}
         </button>
     )

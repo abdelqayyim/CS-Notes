@@ -5,7 +5,7 @@ const Note = (props)=>{
 
 
     return (
-        <div>
+        <div className='note-info'>
             <div className='note-title'>
             {props.title}
             </div>
