@@ -7,13 +7,19 @@ const AppContext = (props) => {
     const [language, setLanguage] = useState(undefined);
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState(null);
+    const [noteTitle, setNoteTitle] = useState(undefined);
+    const [noteDescription, setNoteDescription] = useState(undefined);
+    const [buttonClicked, setButtonClicked] = useState(false); //this is to know whether a language has been
+    const [noteClicked, setNoteClicked] = useState(false); 
 
     const currentDetails = {
         currLanguage :language,
-        currNoteTitle: undefined,
-        currNoteDescription: undefined,
+        currNoteTitle: noteTitle,
+        currNoteDescription: noteDescription,
         currNotes: notes, 
-        lodaing: isLoading,
+        languageClicked: buttonClicked, 
+        noteClicked: noteClicked, 
+        loading: isLoading,
         spinnerMessage: message,
         updateNotes: function (newNotes) {
             setNotes(newNotes);
@@ -21,6 +27,7 @@ const AppContext = (props) => {
         },
         updateLanguage: function (newLanguage) {
             setLanguage(newLanguage);
+            setButtonClicked(true);
             currentDetails.currLanguage = newLanguage;
         }, 
         showSpinner: function () {
@@ -31,12 +38,19 @@ const AppContext = (props) => {
         },
         updateMessage: function (newMessage) {
             setMessage(newMessage);
+        }, 
+        clickNote: function (note) {
+            setNoteTitle(note.title);
+            setNoteDescription(note.description);
+            setNoteClicked(true);
+        }, 
+        resetNoteClicked: function(){
+            setNoteClicked(false);
         }
     }
-    console.log(currentDetails);
     return (
         <AppProvider.Provider value={currentDetails}>
-            {isLoading && <Message message={currentDetails.spinnerMessage } />}
+            {isLoading && <Message message={currentDetails.spinnerMessage }/>}
             {props.children}
         </AppProvider.Provider>
     )

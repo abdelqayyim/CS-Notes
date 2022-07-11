@@ -21,7 +21,7 @@ function App() {
       <Background className={move === true ? 'background move-up' : 'background'}>
         <p className='my-cs-notes'>My CS Notes</p>
         <LanguagesBox moveUp={moveUp} />
-        <NoteDisplay/>
+        <NoteDisplay />
       </Background>
     </AppContext>
     
