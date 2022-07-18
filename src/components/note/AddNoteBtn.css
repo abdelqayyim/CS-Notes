@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
 }
-.btn{
+.add-noteBtn{
     position: relative;
     margin: 0 5px;
     border-radius: 5px;
@@ -11,8 +11,9 @@
     font-family:'Bitter', sans-serif;
     padding: 5px 10px;
     border: none;
-    background-color:transparent;
+    /* background-color:transparent; */
     /* background-color:#3898ec; */
+    background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
     color: black;
     transition-timing-function: ease-out;
     transition-duration: 0.2s;
@@ -21,14 +22,7 @@
     flex-direction: row;
     align-items: center;
 }
-.btn:hover{
+.add-noteBtn:hover{
     transform: scale(1.1);
     border: 1px solid #3898ec;
-    /* background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); */
-}
-
-.btn.selected{
-    transform: scale(1.1);
-    border: 1px solid #3898ec;
-    background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
 }

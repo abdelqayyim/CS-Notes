@@ -1,40 +1,37 @@
-import React, {useState, useCallback, useEffect, useContext} from 'react'; 
+import React, {useEffect, useContext} from 'react'; 
 import './LanguagesBox.css';
 
 import LanguageButton from '../button/LanguageButton';
-
-import Message from '../message-popup/Message';
+import DropArrow from '../DropArrow/DropArrow';
 import { AppProvider } from '../../AppContext';
+import AddNoteBtn from '../note/AddNoteBtn';
 
 const LanguagesBox = (props) => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [languages, setLanguages] = useState([]);
-    
     const curr = useContext(AppProvider);
-
-    const fetchLanguagesHandler = useCallback(async () => {
-        curr.showSpinner(); //equivalent to setting isLoading to true
-        curr.updateMessage('Loading Data')
-        const response = await fetch('https://frequentquestions.herokuapp.com/languages/')
-        const data = await response.json();
-        
-        setLanguages(data.reverse())
-        
-        curr.hideSpinner();
-        curr.updateMessage(null)
-    }, [])
     
     useEffect(() => {
-        fetchLanguagesHandler();
-    }, [fetchLanguagesHandler])
+        curr.updateMessage("Loading Data");
+        curr.fetchLanguages();
+    }, [curr.fetchLanguages])
 
-
+    function titleCase(str) {
+        str = str.toLowerCase().split(' ');
+        for (var i = 0; i < str.length; i++) {
+          str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+        }
+        return str.join(' ');
+    }
 
     return (
-        <div className='languages-box'>
-            {languages.map(language => {
-                return <LanguageButton name={language.name} key={language._id} moveUp={props.moveUp} />
-            })}
+        <div className='top-div'>
+            <div className='languages-box'>
+                { curr.currLanguages.map(language => {
+                    return <LanguageButton name={titleCase(language.name)} key={language._id} moveUp={props.moveUp} />
+                })}
+                <DropArrow/>
+            </div>
+            
+            {curr.languageClicked  && !curr.noteClicked && <AddNoteBtn/>}
         </div>
     )
 };

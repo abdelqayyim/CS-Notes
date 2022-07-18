@@ -37,9 +37,10 @@
   }
 }
 .my-cs-notes{
-  color: white;
+  color: black;
   font-size: 6rem;
   font-family: 'Ubuntu';
   text-align: center;
   font-weight: bold;
 }
+

@@ -7,28 +7,56 @@
     display: none;
 }
 .note-info{
-    background-color: red;
     max-height: 200px;
+    min-height: 200px;
     width: 200px;
+    border: 1px solid #DDDD;
     border-radius: 5px;
     margin: 10px;
-    transition-duration: 0.3s;
-    transition-timing-function: ease-out;
+    overflow: hidden;
 }
 .note-info:hover{
-    transform: scale(1.03);
+    /* transform: scale(1.03); */
+    border: 1px solid #3898ec;
 }
 .note-title{
-    border-bottom: 2px solid black;
-    background-color: green;
     height: 20%;
-    font-size: 1.5rem;
-    padding: 5px;
-    border-radius: 5px;
+    font-size: 1rem;
+    padding: 5px 5px;
+    margin-bottom: 2px;
+    font-weight: bold;
+    display: flex;
+    flex: row;
+    align-items: center;
 }
 .note-description{
     padding: 5px;
-    overflow: hidden;
-    text-overflow: ellipsis;
     height: 80%;
+    overflow-y: scroll;
+    font-size: 1rem;
+   
+    /* text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; */
+
+    overflow:hidden;
+  line-height: 1.5rem;
+  max-height: 8rem;
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 5
+
+}
+hr{
+    color: black;
+    width: 90%;
+    align-self: center;
+    height: 1px;
+    border: 0.5px solid rgba(244, 242, 242, 0.867);
+}
+.note-info:hover hr{
+    border: 1px solid #3898ec;
 }

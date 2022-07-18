@@ -21,11 +21,15 @@ function App() {
       <Background className={move === true ? 'background move-up' : 'background'}>
         <p className='my-cs-notes'>My CS Notes</p>
         <LanguagesBox moveUp={moveUp} />
-        <NoteDisplay />
+        <NoteDisplay/>
       </Background>
     </AppContext>
     
   );
 }
 
+// TASK: ading and removing language
+// TASK: adding and removing note
+// TASK: editing title and description and code
+// TASK: code section
 export default App;

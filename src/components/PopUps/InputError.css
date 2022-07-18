@@ -1,0 +1,42 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.error-box{
+    z-index: 100;
+    position: fixed;
+    /* height: 50px;
+    width: 300px; */
+    padding: 5px;
+    bottom: -50px;
+    right: 50%;
+    transform: translateX(50%);
+    background-color: white;
+    visibility: visible;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in;
+}
+.error-box.active{
+    transform: translateY(-20%);
+    transform: translateX(50%);
+    bottom: 10px;
+}
+.mark{
+    margin-right: 10px;
+    font-size: 2rem;
+}
+.negative{
+    color: red;
+}
+.positive{
+    color: green;
+}
+.error-message{
+    font-size: 1.3rem;
+}

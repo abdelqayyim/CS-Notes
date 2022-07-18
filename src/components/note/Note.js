@@ -5,17 +5,16 @@ import { AppProvider } from '../../AppContext';
 
 const Note = (props)=>{
     const curr = useContext(AppProvider);
-
-    const noteClickHandler = () => {
-        console.log(`Note with title:${props.title} and description: ${props.description}`);
+    const noteHandler = () => {
+        curr.closeDropMenu();
         curr.clickNote(props);
     }
-
     return (
-        <div className='note-info' onClick={noteClickHandler}>
+        <div className='note-info' onClick={noteHandler}>
             <div className='note-title'>
                 {props.title}
             </div>
+            <center><hr></hr></center>
             <div className='note-description'>
                 {props.description}
             </div>

@@ -3,7 +3,8 @@
     margin: 0;
 }
 .background{
-    background-color: black;
+    background-color: white;
+    /* background-color: black; */
     height: 100vh;
     display: flex;
     flex-direction: column;

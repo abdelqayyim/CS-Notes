@@ -22,6 +22,10 @@ const NoteDisplay = (props) => {
                     <div className='title'>
                         { curr.currNoteTitle}
                     </div>
+                    <div className='description'>
+                        {curr.currNoteDescription.length === 0 && "No Description"}
+                    { curr.currNoteDescription}
+                    </div>
                     <div className='code'>
                         Code
                     </div>
