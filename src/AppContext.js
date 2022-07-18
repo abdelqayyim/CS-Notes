@@ -3,6 +3,7 @@ import Message from './components/message-popup/Message';
 import AddLanguagePopUp from './components/PopUps/AddLanguagePopUp';
 import DeleteLanguagePopUp from './components/PopUps/DeleteLanguagePopUp';
 import InputError from './components/PopUps/InputError';
+import AddNotePopUp from './components/PopUps/AddNotePopUp';
 
 export const AppProvider = React.createContext();
 const AppContext = (props) => {
@@ -19,6 +20,8 @@ const AppContext = (props) => {
     const [addLanguage, setAddLanguage] = useState(false); 
     const [deleteLanguage, setDeleteLanguage] = useState(false); 
     const [dropMenu, setDropMenu] = useState(false);
+    const [clickAddNote, setClickAddNote] = useState(false);
+    const [updateBtn, setUpdateBtn] = useState(false);
 
     const [overlayClicked, setOverlayClicked ] = useState(false);
     const [errorInput, setErrorInput] = useState(false);
@@ -42,6 +45,8 @@ const AppContext = (props) => {
         inputErrorMessage: errorMessage,
         inputError: errorInput, //if there is an error in the input
         menuActive: dropMenu,
+        addNoteClicked: clickAddNote,
+        
         updateNotes: function (newNotes) {
             setNotes(newNotes);
             currentDetails.currNotes = newNotes;
@@ -89,6 +94,9 @@ const AppContext = (props) => {
         closeDropMenu: function(){
             setDropMenu(false);
         },
+        toggleAddNoteClick: function () {
+            setClickAddNote(prev => !prev);
+        },
         fetchLanguages: useCallback(async () => {
             currentDetails.showSpinner(); //equivalent to setting isLoading to true
             // currentDetails.updateMessage('Loading Data')
@@ -99,6 +107,19 @@ const AppContext = (props) => {
             
             currentDetails.hideSpinner();
             currentDetails.updateMessage(null)
+        }, []),
+        fetchNotes: useCallback(async (language) => {
+            language = language.toLowerCase();
+            currentDetails.showSpinner(); //equivalent to setting isLoading to true
+            currentDetails.resetNoteClicked();
+            currentDetails.updateMessage('Loading Notes');
+            const response = await fetch(`https://frequentquestions.herokuapp.com/languages/${language}/getNotes`)
+            const data = await response.json();
+            //update the global variable
+            
+            currentDetails.updateNotes(data.reverse());
+            currentDetails.updateLanguage(language);
+            currentDetails.hideSpinner(); //equivalent to setting isLoading to false
         }, [])
     }
     return (
@@ -107,7 +128,8 @@ const AppContext = (props) => {
             {props.children}
             {currentDetails.addLanguageClicked && <AddLanguagePopUp />}
             {currentDetails.deleteLanguageClicked && <DeleteLanguagePopUp />}
-            <InputError messageType={currentDetails.messageType} errorMessage={currentDetails.inputErrorMessage} className={ currentDetails.inputError? "active": ""} />
+            <InputError messageType={currentDetails.messageType} errorMessage={currentDetails.inputErrorMessage} className={currentDetails.inputError ? "active" : ""} />
+            {currentDetails.addNoteClicked && <AddNotePopUp/>}
         </AppProvider.Provider>
     )
 };

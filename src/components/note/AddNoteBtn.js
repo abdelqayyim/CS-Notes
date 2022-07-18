@@ -5,8 +5,10 @@ import { AppProvider } from '../../AppContext';
 const AddNoteBtn = (props) => {
     const curr = useContext(AppProvider);
 
+
     const handleAddNote = () => {
         curr.closeDropMenu();
+        curr.toggleAddNoteClick();
     }
     return (
         <div className="add-noteBtn" onClick={handleAddNote}>Add Note</div>
