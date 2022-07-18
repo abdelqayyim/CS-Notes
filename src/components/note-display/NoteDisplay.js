@@ -26,9 +26,12 @@ const NoteDisplay = (props) => {
                         {curr.currNoteDescription.length === 0 && "No Description"}
                     { curr.currNoteDescription}
                     </div>
-                    <div className='code'>
-                        Code
-                    </div>
+                    <textarea className="code">
+                        {curr.currNoteDetail}
+                    </textarea>
+                    {/* <div className='code'>
+                        {curr.currNoteDetail}
+                    </div> */}
                 </div>
                 <div className='note-suggestion'>
                 {curr.currNotes.map(note => 
