@@ -66,10 +66,79 @@ p{
     margin-bottom: 10px;
 }
 .code{
+    position: relative;
     border: 1px solid #DDDD;
     background-color: #DDDD;
     width: 90%;
     border-radius: 5px;
     padding: 5px;
     min-height: 500px;
+
+    font-family: monospace;
+    line-height: 1.5;
+}
+/* .script, .textarea{
+    margin: 10px;
+    padding: 10px;
+    border: 0;
+    width: calc(100% - 32px);
+    height: 150px;
+}
+.script, .textarea, .highight{
+    font-size: 15pt;
+  font-family: monospace;
+  line-height: 20pt;
+}
+
+.script, .textarea{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.script{
+    z-index: 0;
+}
+.textarea{
+    z-index: 1;
+    color: transparent;
+  background: transparent;
+  caret-color: white;
+  resize: none;
+} */
+
+.textarea{
+    background-color: transparent;
+    position: absolute;
+    color: transparent;
+    padding: 4.5px 5px;
+    margin: 0px;
+    font-size: 1rem !important;
+    font-family: monospace !important;
+    line-height: inherit !important;
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: 2;
+    caret-color: white;
+    font-weight: bold;
+    outline: none;
+}
+.script{
+    pointer-events: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    padding: 10px !important;
+    margin: 0px !important;
+    font-size: 1rem !important;
+    font-family: monospace !important;
+    line-height: inherit !important;
+    background-color: transparent;
+    white-space: normal !important;
+    word-break: break-word !important;
+    z-index: 0;
+    overflow: auto;
+    white-space: nowrap;
 }
