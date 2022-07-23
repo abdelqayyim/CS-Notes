@@ -4,28 +4,15 @@ import './NoteDisplay.css';
 import { AppProvider } from '../../AppContext';
 import Prism from "prismjs";
 import "../Themes/prism.css";
+import Editor from '../Editor/Editor';
 
 const NoteDisplay = (props) => {
     const curr = useContext(AppProvider);
     let note = useRef();
     let result = useRef();
+    let pre = useRef();
     
 
-    setTimeout(() => {
-        Prism.highlightAll();
-    },1000)
-
-    const change = ()=>{
-        result.current.innerHTML = note.current.value.replace(new RegExp("&", "g"), "&").replace(new RegExp("<", "g"), "<");;
-        Prism.highlightAll();
-    }
-    const syncScroll = (element)=>{
-        // note.current.scrollTop = element.current.scrollTop;
-        // note.current.scrollLeft = element.current.scrollLeft;
-        result.current.scrollIntoView();
-        note.current.scrollIntoView();
-        console.log("Hello")
-    }
 
     if (curr.languageClicked && !curr.noteClicked) {
         return (
@@ -49,16 +36,7 @@ const NoteDisplay = (props) => {
                     { curr.currNoteDescription}
                     </div>
 
-                    <div className='code'>
-                        <textarea spellCheck={false} ref={note} onInput={() => { change(); syncScroll(this) }} onScroll={() => { syncScroll(this) }} className="textarea">
-
-                        </textarea>
-                        <pre  className="language-javascript script">
-                            <code ref={result} className="highlight">
-                                
-                            </code>
-                        </pre>
-                    </div>
+                    <Editor currentLanguage={ curr.currLanguage} />
                     
                     
                     

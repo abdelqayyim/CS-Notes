@@ -3,6 +3,7 @@ import './App.css';
 import Background from './components/Background';
 import LanguagesBox from './components/buttons-box/LanguagesBox';
 import NoteDisplay from './components/note-display/NoteDisplay';
+import Prism from 'prismjs';
 
 import AppContext from './AppContext';
 
@@ -10,6 +11,7 @@ import AppContext from './AppContext';
 //TASK: add move-up class when button is clicked
 //TASK: Add SVG spinner while loading the languages
 function App() {
+  
   const [move, setMove] = useState(false);
 
   const moveUp = () => {//this shift the title and language up when a language is pressed
