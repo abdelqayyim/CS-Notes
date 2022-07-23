@@ -4,69 +4,7 @@
     padding: 0;
     tab-size: 2;
 }
-.notes-display{
-    color: black;
-    width: 99%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    overflow-y: scroll;
-}
-p{
-    color: white;
-}
-
-.clickedNote-container{
-    width: 100%;
-    max-height: calc(100% - 160px);
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-}
-.note-suggestion{
-    width: 25%;
-    max-height: 100%;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    overflow-y: scroll;
-    padding-top: 1px;
-}
-.note-suggestion::-webkit-scrollbar {
-    display: none;
-}
-
-
-.note-section{
-    width: 75%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.title{
-    width: 90%;
-    border-radius: 5px;
-    padding: 5px;
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 10px;
-    border: 1px solid #DDDD;
-    background-color: #DDDD;
-}
-.description{
-    border: 1px solid #DDDD;
-    background-color: #DDDD;
-    width: 90%;
-    border-radius: 5px;
-    padding: 5px;
-    text-align: center;
-    margin-bottom: 10px;
-}
-/* .code{
+.code{
     position: relative;
     border: 1px solid #DDDD;
     background-color: #DDDD;
@@ -74,6 +12,7 @@ p{
     border-radius: 5px;
     padding: 5px;
     min-height: 500px;
+    z-index: 0;
 
     font-family: monospace;
     line-height: 1.5;
@@ -135,15 +74,3 @@ p{
     opacity: 1;
 }
 
-
-
-/* The popup for changing the note language */
-.changeNote-lang{
-    position: fixed;
-}
-/* .newLang-input{
-
-}
-.newLang-btn{
-
-} */ 
