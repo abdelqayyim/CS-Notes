@@ -66,74 +66,6 @@ p{
     text-align: center;
     margin-bottom: 10px;
 }
-/* .code{
-    position: relative;
-    border: 1px solid #DDDD;
-    background-color: #DDDD;
-    width: 90%;
-    border-radius: 5px;
-    padding: 5px;
-    min-height: 500px;
-
-    font-family: monospace;
-    line-height: 1.5;
-}
-
-
-.textarea{
-    background-color: transparent;
-    position: absolute;
-    color: transparent;
-    padding: 4.5px 5px;
-    margin: 0px;
-    font-size: 1rem !important;
-    font-family: monospace !important;
-    line-height: inherit !important;
-    width: 100%;
-    height: 100%;
-    border: none;
-    z-index: 2;
-    caret-color: white;
-    font-weight: bold;
-    outline: none;
-    resize: none;
-}
-.script{
-    pointer-events: none;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    padding: 10px !important;
-    margin: 0px !important;
-    font-size: 1rem !important;
-    font-family: monospace !important;
-    line-height: inherit !important;
-    background-color: transparent;
-    white-space: normal !important;
-    word-break: break-word !important;
-    z-index: 0;
-}
-.script, .highlight{
-    overflow: auto;
-    white-space: nowrap;
-}
-
-.note-lang{
-    position: absolute;
-    z-index: 3;
-    border: 1px solid white;
-    padding: 5px;
-    border-radius: 4px;
-    right: 0;
-    margin-right: 5px;
-    color: rgb(202, 88, 202);
-    opacity: 0.3;
-}
-.note-lang:hover{
-    opacity: 1;
-}
 
 
 
@@ -141,9 +73,28 @@ p{
 .changeNote-lang{
     position: fixed;
 }
-/* .newLang-input{
-
+.note-btns{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
 }
-.newLang-btn{
-
-} */ 
+.btn-note{
+    background-color: #3898ec;
+    position: relative;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-size: 1.5vw;
+    font-family:'Bitter', sans-serif;
+    padding: 5px 10px;
+    border: none;
+    color: black;
+    transition-timing-function: ease-out;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

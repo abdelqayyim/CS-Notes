@@ -12,9 +12,13 @@ const AppContext = (props) => {
     const [language, setLanguage] = useState(undefined);
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState(null);
+
     const [noteTitle, setNoteTitle] = useState(undefined);
     const [noteDetail, setNoteDetail] = useState(undefined);
     const [noteDescription, setNoteDescription] = useState(undefined);
+    const [noteID, setNoteID] = useState(undefined);
+
+
     const [buttonClicked, setButtonClicked] = useState(false); //this is to know whether a language has been
     const [noteClicked, setNoteClicked] = useState(false); 
     const [addLanguage, setAddLanguage] = useState(false); 
@@ -34,6 +38,7 @@ const AppContext = (props) => {
         currNoteTitle: noteTitle,
         currNoteDescription: noteDescription,
         currNoteDetail: noteDetail,
+        currNoteId: noteID,
         currNotes: notes, 
         languageClicked: buttonClicked, 
         noteClicked: noteClicked, 
@@ -72,8 +77,9 @@ const AppContext = (props) => {
             setNoteTitle(note.title);
             setNoteDescription(note.description);
             setNoteDetail(note.noteDetail);
+            setNoteID(note.noteId);
             setNoteClicked(true);
-        }, 
+        },
         resetNoteClicked: function(){
             setNoteClicked(false);
         }, 

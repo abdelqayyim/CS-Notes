@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import Prism from "prismjs";
 import "../Themes/prism.css";
 import "./Editor.css";
@@ -16,13 +16,29 @@ import 'prismjs/components/prism-markdown';
 import 'prismjs/components/prism-swift';
 import 'prismjs/components/prism-typescript';
 
+import { AppProvider } from "../../AppContext";
 const Editor = (props) => {
+  let deleteBtn = useRef();
+    let saveBtn = useRef();
+  const curr = useContext(AppProvider);
+  
+
   setTimeout(() => {
     Prism.highlightAll();
-  },1000)
-    let note = useRef();
-    let result = useRef();
+  }, 1000)
+  
+  let note = useRef();
+  let result = useRef();
   let pre = useRef();
+
+  let noteLanguage = curr.currLanguage;
+  if (curr.currLanguage.slice(-2) === "js" || curr.currLanguage === "react native") { //should create a function for this
+    noteLanguage = "javascript";
+  }
+  else if (curr.currLanguage === "csharp") { //should create a function for this
+    noteLanguage = "cs";
+  }
+  console.log(noteLanguage);
 
   const [showPop, setShowPop] = useState(false);
   const [lang, setLang] = useState(props.currentLanguage);
@@ -67,14 +83,16 @@ const Editor = (props) => {
         Prism.highlightElement(result_element);
     }
   useEffect(() => { }, [lang]);
-  console.log("Rendered");
-  console.log(`Language is ${lang}`);
-  return (
-    <div className="code">
-      <div className="note-lang" onClick={changeLang}>{lang }</div>
 
-      {showPop && <ChangeNoteLang closePop={changeLang} changeNoteLanguage={changeNoteLang}/>}
-    
+
+
+  return (
+    <div className="code-section">
+      <div className="code">
+      <div className="note-lang" onClick={changeLang}>{noteLanguage === 'cs'? "c#": noteLanguage}</div>
+
+      {/* {showPop && <ChangeNoteLang closePop={changeLang} changeNoteLanguage={changeNoteLang}/>}
+      implemeting this after, I was not able to make it work */}
 
       <textarea
         spellCheck={false}
@@ -86,12 +104,20 @@ const Editor = (props) => {
         onScroll={() => syncScroll(note.current)}
         onKeyDown={(e) => checkTab(note.current, e)}
         className="textarea"
-      ></textarea>
-      <pre className={`language-${lang} script`} ref={pre}>
+      >{ props.noteDetail}</textarea>
+      <pre className={`language-${noteLanguage} script`} ref={pre}>
         <code ref={result} className="highlight">
+        {props.noteDetail}
         </code>
       </pre>
     </div>
+    <div className='note-btns'>
+    <button className='btn-note' ref={deleteBtn}>Delete</button>
+    <button className='btn-note' ref={saveBtn} onClick={()=> props.onSave(note.current.value)}>Save</button>
+    
+</div>
+    </div>
+    
   );
 };
 

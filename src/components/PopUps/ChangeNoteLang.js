@@ -1,13 +1,15 @@
-import React, {useState, useRef} from 'react'; 
+import React, {useState, useRef, useContext} from 'react'; 
 import ReactDOM from 'react-dom';
 import './ChangeNoteLang.css';
+import { AppProvider } from '../../AppContext';
 
 const ChangeNoteLang = (props) => {
+    const curr = useContext(AppProvider);
     let noteLang = useRef();
     const clickHandler = () => {
-        console.log(noteLang.current.value);
         if (noteLang.current.value.length !== 0) {
-            props.changeNoteLanguage(noteLang.current.value);
+            // props.changeNoteLanguage(noteLang.current.value);
+            curr.updateNoteLanguage(noteLang.current.value);
             props.closePop();
         }
     }
