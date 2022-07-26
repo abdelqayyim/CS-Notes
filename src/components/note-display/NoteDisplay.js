@@ -21,8 +21,6 @@ const NoteDisplay = (props) => {
             "noteDetail": detail,
             "_id": curr.currNoteId
         }
-        console.log(noteToSave);
-        console.log(curr)
 
         //TASK: make sure to update the note title, description and detail in the global curr
         curr.showSpinner(); 
@@ -49,9 +47,45 @@ const NoteDisplay = (props) => {
             setTimeout(() => { 
                 curr.manageBottomMessage(false, "negative", `Error while saving note`);
             },2000)
-            console.log(response)
         }
     })
+
+    const deleteNoteHandler = useCallback(async (detail) => {//detail is the code the user has inputted
+        let deleteToSave = {
+            "title": title.current.innerText,
+            "description": description.current.innerText,
+            "noteDetail": detail,
+            "_id": curr.currNoteId
+        }
+        
+        curr.showSpinner(); 
+        curr.updateMessage('Saving Note')
+        const response = await fetch(`https://frequentquestions.herokuapp.com/languages/${curr.currLanguage.toLowerCase()}/deleteNote`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(deleteToSave),
+        })
+        const data = await response;
+        curr.hideSpinner();
+
+        if (response.ok) {
+            curr.manageBottomMessage(true, "positive", `Note was Successfully Deleted`);
+            setTimeout(() => { 
+                curr.manageBottomMessage(false, "positive", `Note was Successfully Deleted`);
+            }, 2000)
+            document.querySelector(".selected").click();
+        }
+        else {
+            curr.manageBottomMessage(true, "negative", `Error while deleting note`);
+            setTimeout(() => { 
+                curr.manageBottomMessage(false, "negative", `Error while deleting note`);
+            },2000)
+        }
+    })
+    
     
 
     if (curr.languageClicked && !curr.noteClicked) {
@@ -75,7 +109,7 @@ const NoteDisplay = (props) => {
                     { curr.currNoteDescription}
                     </div>
 
-                    <Editor noteLanguage={curr.currLanguage.toString().toLowerCase()} noteDetail={curr.currNoteDetail} onSave={saveNoteHandler} />
+                    <Editor noteLanguage={curr.currLanguage.toString().toLowerCase()} noteDetail={curr.currNoteDetail} onSave={saveNoteHandler} onDelete={deleteNoteHandler} />
                     
                     
                 </div>

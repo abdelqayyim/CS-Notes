@@ -37,8 +37,6 @@ const AddNotePopUp = (props) => {
             "noteDetail": "",
             "_id": 0
         }
-        console.log(newNote);
-
         
         curr.showSpinner(); //equivalent to setting isLoading to true
         curr.updateMessage('Adding Note')
@@ -61,7 +59,6 @@ const AddNotePopUp = (props) => {
                 curr.manageBottomMessage(false, "positive", `Note was Successfully Added`);
             }, 2000)
             curr.updateMessage("Updating");
-            console.log(curr);
             curr.fetchLanguages();
         }
         else {

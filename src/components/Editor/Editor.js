@@ -38,19 +38,18 @@ const Editor = (props) => {
   else if (curr.currLanguage === "csharp") { //should create a function for this
     noteLanguage = "cs";
   }
-  console.log(noteLanguage);
 
   const [showPop, setShowPop] = useState(false);
   const [lang, setLang] = useState(props.currentLanguage);
 
   const changeLang = () => {
-        setShowPop(prev=>!prev);
+      setShowPop(prev=>!prev);
   }
-  const changeNoteLang = (newLang) => {
-    setLang(newLang);
-    // Prism.highlightAll();
-    // Prism.highlight(result.current);
-  }
+  // const changeNoteLang = (newLang) => {
+  //   setLang(newLang);
+  //   // Prism.highlightAll();
+  //   // Prism.highlight(result.current);
+  // }
     const syncScroll = (element) => {
         let res = pre.current;
         res.scrollTop = element.scrollTop;
@@ -112,7 +111,7 @@ const Editor = (props) => {
       </pre>
     </div>
     <div className='note-btns'>
-    <button className='btn-note' ref={deleteBtn}>Delete</button>
+    <button className='btn-note' ref={deleteBtn} onClick={()=>props.onDelete(note.current.value)}>Delete</button>
     <button className='btn-note' ref={saveBtn} onClick={()=> props.onSave(note.current.value)}>Save</button>
     
 </div>

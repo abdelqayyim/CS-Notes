@@ -6,8 +6,6 @@
 .error-box{
     z-index: 100;
     position: fixed;
-    /* height: 50px;
-    width: 300px; */
     padding: 5px;
     bottom: -50px;
     right: 50%;
@@ -21,6 +19,9 @@
     justify-content: center;
     transition-duration: 0.5s;
     transition-timing-function: ease-in;
+    box-shadow: -1px 1px 4px 0px rgba(0,0,0,0.54);
+-webkit-box-shadow: -1px 1px 4px 0px rgba(0,0,0,0.54);
+-moz-box-shadow: -1px 1px 4px 0px rgba(0,0,0,0.54);
 }
 .error-box.active{
     transform: translateY(-20%);
