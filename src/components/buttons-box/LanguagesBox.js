@@ -3,16 +3,18 @@ import './LanguagesBox.css';
 
 import LanguageButton from '../button/LanguageButton';
 import DropArrow from '../DropArrow/DropArrow';
-import { AppProvider } from '../../AppContext';
+import { AppProvider, ACTIONS } from '../../AppContext';
 import AddNoteBtn from '../note/AddNoteBtn';
 
 const LanguagesBox = (props) => {
     const curr = useContext(AppProvider);
     
     useEffect(() => {
-        curr.updateMessage("Loading Data");
+        // curr.updateMessage("Loading Data");
+        // curr.callDispatch({ type: ACTIONS.FETCH_LANGUAGES }, "Hello");
+        // console.log(curr.currentLanguages)
         curr.fetchLanguages();
-    }, [curr.fetchLanguages])
+    }, [])
 
     function titleCase(str) {
         str = str.toLowerCase().split(' ');
@@ -25,13 +27,13 @@ const LanguagesBox = (props) => {
     return (
         <div className='top-div'>
             <div className='languages-box'>
-                { curr.currLanguages.map(language => {
+                { curr.currentLanguages.map(language => {
                     return <LanguageButton name={titleCase(language.name)} key={language._id} moveUp={props.moveUp} />
                 })}
                 <DropArrow/>
             </div>
             
-            {curr.languageClicked  && !curr.noteClicked && <AddNoteBtn/>}
+            {curr.currentLanguage !== undefined  && curr.currentNote.noteTitle === undefined && <AddNoteBtn/>}
         </div>
     )
 };

@@ -1,7 +1,8 @@
-import React from 'react'; 
+import React, {useContext} from 'react'; 
 import './InputError.css';
-
-const InputError = (props)=>{
+import { AppProvider } from '../../AppContext';
+const InputError = (props) => {
+    const curr = useContext(AppProvider);
     return (
         <div className={"error-box " + props.className}>
             <div className={ "mark "+ props.messageType}>{props.messageType === "negative"?<i className="fa-solid fa-xmark"></i>: <i className="fa-solid fa-check"></i>}</div>

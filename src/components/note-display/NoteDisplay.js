@@ -1,7 +1,7 @@
 import React, {useContext, useRef, useCallback} from 'react'; 
 import Note from '../note/Note';
 import './NoteDisplay.css';
-import { AppProvider } from '../../AppContext';
+import { ACTIONS,AppProvider } from '../../AppContext';
 import Editor from '../Editor/Editor';
 
 
@@ -13,108 +13,61 @@ const NoteDisplay = (props) => {
     let title = useRef();
     let description = useRef();
 
+    function titleCase(str) {
+        str = str.toLowerCase().split(' ');
+        for (var i = 0; i < str.length; i++) {
+          str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+        }
+        return str.join(' ');
+    }
 
     const saveNoteHandler = useCallback(async (detail) => {//detail is the code the user has inputted
         let noteToSave = {
-            "title": title.current.innerText,
-            "description": description.current.innerText,
-            "noteDetail": detail,
-            "_id": curr.currNoteId
+            title: title.current.innerText,
+            description: description.current.innerText,
+            noteDetail: detail,
+            _id: curr.currentNote.id
         }
-
-        //TASK: make sure to update the note title, description and detail in the global curr
-        curr.showSpinner(); 
-        curr.updateMessage('Saving Note')
-        const response = await fetch(`https://frequentquestions.herokuapp.com/languages/${curr.currLanguage.toLowerCase()}/updateNote`, {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(noteToSave),
-        })
-        const data = await response;
-        curr.hideSpinner();
-
-        if (response.ok) {
-            curr.manageBottomMessage(true, "positive", `Note was Successfully Saved`);
-            setTimeout(() => { 
-                curr.manageBottomMessage(false, "positive", `Note was Successfully Saved`);
-            }, 2000)
-        }
-        else {
-            curr.manageBottomMessage(true, "negative", `Error while saving note`);
-            setTimeout(() => { 
-                curr.manageBottomMessage(false, "negative", `Error while saving note`);
-            },2000)
-        }
+        curr.saveNote(curr.currentLanguage,noteToSave);
     })
 
     const deleteNoteHandler = useCallback(async (detail) => {//detail is the code the user has inputted
-        let deleteToSave = {
-            "title": title.current.innerText,
-            "description": description.current.innerText,
-            "noteDetail": detail,
-            "_id": curr.currNoteId
+        let noteToDelete = {
+            title: title.current.innerText,
+            description: description.current.innerText,
+            noteDetail: detail,
+            _id: curr.currentNote.id
         }
-        
-        curr.showSpinner(); 
-        curr.updateMessage('Saving Note')
-        const response = await fetch(`https://frequentquestions.herokuapp.com/languages/${curr.currLanguage.toLowerCase()}/deleteNote`, {
-            method: 'DELETE',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(deleteToSave),
-        })
-        const data = await response;
-        curr.hideSpinner();
-
-        if (response.ok) {
-            curr.manageBottomMessage(true, "positive", `Note was Successfully Deleted`);
-            setTimeout(() => { 
-                curr.manageBottomMessage(false, "positive", `Note was Successfully Deleted`);
-            }, 2000)
-            document.querySelector(".selected").click();
-        }
-        else {
-            curr.manageBottomMessage(true, "negative", `Error while deleting note`);
-            setTimeout(() => { 
-                curr.manageBottomMessage(false, "negative", `Error while deleting note`);
-            },2000)
-        }
+        curr.deleteNote(curr.currentLanguage,noteToDelete);
     })
     
-    
-
-    if (curr.languageClicked && !curr.noteClicked) {
+    if (curr.currentLanguage !== undefined && curr.currentNote.noteTitle === undefined) {
         return (
             <div className='notes-display'>
-                {curr.currNotes.map(note => 
-                    <Note title={note.title} description={note.description} key={note._id} noteDetail={note.noteDetail} noteId={note._id} noteLanguage={ note.noteLanguage} />
+                {curr.currentNotes.map(note => 
+                    <Note title={titleCase(note.title)} description={note.description} key={note._id} noteDetail={note.noteDetail} noteId={note._id} noteLanguage={ note.noteLanguage} />
                 )}
             </div>
         )
     }
-    else if (curr.languageClicked && curr.noteClicked) {
+    else if (curr.currentLanguage !== undefined && curr.currentNote.noteTitle !== undefined) {
         return (
             <div className='clickedNote-container'>
                 <div className='note-section'>
                     <div className='title' contentEditable={true} ref={title}>
-                        { curr.currNoteTitle}
+                        { titleCase(curr.currentNote.noteTitle)}
                     </div>
                     <div className='description' ref={description} contentEditable={true}>
-                        {curr.currNoteDescription.length === 0 && "No Description"}
-                    { curr.currNoteDescription}
+                        {curr.currentNote.noteDescription.length === 0 && "No Description"}
+                    { curr.currentNote.noteDescription}
                     </div>
 
-                    <Editor noteLanguage={curr.currLanguage.toString().toLowerCase()} noteDetail={curr.currNoteDetail} onSave={saveNoteHandler} onDelete={deleteNoteHandler} />
+                    <Editor noteLanguage={curr.currentLanguage.toString().toLowerCase()} noteDetail={curr.currentNote.noteDetail} onSave={saveNoteHandler} onDelete={deleteNoteHandler} />
                     
                     
                 </div>
                 <div className='note-suggestion'>
-                {curr.currNotes.map(note => 
+                {curr.currentNotes.map(note => 
                     <Note title={note.title} description={note.description} key={ note._id} noteDetail={note.noteDetail} noteLanguage={ note.noteLanguage}/>
                 )}
                 </div>

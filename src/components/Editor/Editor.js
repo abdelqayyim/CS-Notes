@@ -31,11 +31,11 @@ const Editor = (props) => {
   let result = useRef();
   let pre = useRef();
 
-  let noteLanguage = curr.currLanguage;
-  if (curr.currLanguage.slice(-2) === "js" || curr.currLanguage === "react native") { //should create a function for this
+  let noteLanguage = curr.currentLanguage;
+  if (curr.currentLanguage.slice(-2) === "js" || curr.currentLanguage === "react native") { //should create a function for this
     noteLanguage = "javascript";
   }
-  else if (curr.currLanguage === "csharp") { //should create a function for this
+  else if (curr.currentLanguage === "csharp") { //should create a function for this
     noteLanguage = "cs";
   }
 

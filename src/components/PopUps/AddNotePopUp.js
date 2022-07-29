@@ -1,7 +1,7 @@
 import React, {useState, useRef, useContext, useCallback} from 'react'; 
 import './AddNotePopUp.css';
 import ReactDOM from 'react-dom';
-import { AppProvider } from '../../AppContext';
+import { ACTIONS, AppProvider } from '../../AppContext';
 
 const AddNotePopUp = (props) => {
     const curr = useContext(AppProvider);
@@ -10,26 +10,17 @@ const AddNotePopUp = (props) => {
     let newTitle = useRef();
     let newDescription = useRef();
     const overlayHandler = () => {
-        curr.toggleAddNoteClick();
+        curr.callDispatch({type: ACTIONS.TOGGLE_ADD_NOTE_POPUP})
     }
     const addNewNoteHandler = () => {
         let title = newTitle.current.value.trim();
         let description = newDescription.current.value.trim();
         if (title.length === 0) {
-            curr.manageBottomMessage(true, "negative", "Title Cannot be Blank");
+            curr.callDispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: true,errorType: 'negative',message: `Title Cannot be Blank`}})
             setTimeout(() => { 
-                curr.manageBottomMessage(false, "negative", "Title Cannot be Blank");
+                curr.callDispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: false,errorType: 'negative',message: `Title Cannot be Blank`}})
             },2000)
             return
-        }
-        addNote();
-    }
-    const addNote = useCallback(async () => {
-        let title = newTitle.current.value.trim().toLowerCase();
-        let description = newDescription.current.value.trim().toLowerCase();
-        let language = curr.currLanguage.toLowerCase();
-        if(description.length === 0){
-            description = "";
         }
         let newNote = {
             "title": title,
@@ -37,42 +28,18 @@ const AddNotePopUp = (props) => {
             "noteDetail": "",
             "_id": 0
         }
-        
-        curr.showSpinner(); //equivalent to setting isLoading to true
-        curr.updateMessage('Adding Note')
-        const response = await fetch(`https://frequentquestions.herokuapp.com/languages/${language}/newNote`, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newNote),
-        })
-        const data = await response;
-        curr.hideSpinner();
-
-        if (response.ok) {
-            curr.fetchNotes(language);
-            curr.manageBottomMessage(true, "positive", `Note was Successfully Added`);
-            overlay.current.click();
-            setTimeout(() => { 
-                curr.manageBottomMessage(false, "positive", `Note was Successfully Added`);
-            }, 2000)
-            curr.updateMessage("Updating");
-            curr.fetchLanguages();
+        curr.addNote(curr.currentLanguage, newNote);
+    }
+    const enterKeyPress = (key) => {
+        console.log(key.code === "Enter")
+        if (key.code === "Enter") {
+            addNewNoteHandler();
         }
-        else {
-            curr.manageBottomMessage(true, "negative", `Note with that title Already Exists`);
-            setTimeout(() => { 
-                curr.manageBottomMessage(false, "negative", `Note with that title Already Exists`);
-            },2000)
-        }
-        
-    }, [])
+    }
 
     return (
         ReactDOM.createPortal(
-            <div className='newNote-container'>
+            <div className='newNote-container' onKeyPress={enterKeyPress}>
                 <div className={overlayClicked? "overlay": "overlay active" } ref={overlay} onClick={overlayHandler}></div>
                 <div className={overlayClicked? "newNote-popup": "newNote-popup active" }>
                     <input placeholder='Title' className='newNote-title' ref={newTitle}></input>

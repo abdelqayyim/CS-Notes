@@ -1,7 +1,7 @@
 import React, {useCallback, useContext} from 'react'; 
 import './LanguageButton.css';
 
-import { AppProvider } from '../../AppContext';
+import { ACTIONS, AppProvider } from '../../AppContext';
 
 const URL = 'https://frequentquestions.herokuapp.com/languages/';
 
@@ -11,12 +11,12 @@ const LanguageButton = (props) => {
 
 
     const languageButtonHandler = () => {
-        curr.closeDropMenu();
+        curr.callDispatch({ type: ACTIONS.CHANGE_CURRENT_LANGUAGE, payload: { language: props.name } });
         props.moveUp();
-        curr.fetchNotes(props.name);
+        curr.fetchNotes(props.name.toLowerCase());
     }
 
-    const correspondsToCurrentLanguage = (curr.currLanguage !== undefined) && (curr.currLanguage.toLowerCase() === props.name.toLowerCase()); 
+    const correspondsToCurrentLanguage = (curr.currentLanguage !== undefined) && (curr.currentLanguage.toLowerCase() === props.name.toLowerCase()); 
     const classname = correspondsToCurrentLanguage? "btn selected" : "btn";
     
     return (

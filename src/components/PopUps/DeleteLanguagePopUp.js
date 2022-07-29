@@ -1,6 +1,6 @@
 import React, {useState, useCallback, useRef, useContext} from 'react'; 
 import './DeleteLanguagePopUp.css';
-import { AppProvider } from '../../AppContext';
+import { ACTIONS,AppProvider } from '../../AppContext';
 import ReactDOM from 'react-dom';
 
 const DeleteLanguagePopUp = (props) => {
@@ -11,19 +11,18 @@ const DeleteLanguagePopUp = (props) => {
     const [overlayClicked, setOverlayClicked ] = useState(false);
 
     const overlayHandler = () => {
-        curr.deleteLanguageClick();
+        curr.callDispatch({ type: ACTIONS.TOGGLE_DELETE_LANGUAGE_POPUP });
     }
     const deleteLanguage = () => {
         let input = inputName.current.value.trim();
         if (input.length === 0) {
-            curr.manageBottomMessage(true, "negative", "Input Cannot be Blank");
+            curr.callDispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: true,errorType: 'negative',message: `Input Field Cannot be Empty`}})
             setTimeout(() => { 
-                curr.manageBottomMessage(false, "negative", "Input Cannot be Blank");
+                curr.callDispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: false,errorType: 'negative',message: `Input Field Cannot be Empty`}})
             },2000)
             return
-
         }
-        deleteLang();
+        curr.deleteLanguage(input);
     }
     const deleteLang = useCallback(async () => {
         let input = inputName.current.value.trim();
@@ -58,10 +57,16 @@ const DeleteLanguagePopUp = (props) => {
             },2000)
         }
     }, [])
+    const enterKeyPress = (key) => {
+        console.log(key.code === "Enter")
+        if (key.code === "Enter") {
+            deleteLanguage();
+        }
+    }
 
     return (
         ReactDOM.createPortal(
-            <div className='delete-overlay-container'>
+            <div className='delete-overlay-container' onKeyPress={enterKeyPress}>
                 <div className={overlayClicked? "delete-overlay": "delete-overlay active" } ref={overlay} onClick={overlayHandler}></div>
                 <div className={overlayClicked? "deletelanguage-popup": "deletelanguage-popup active" }>
                     <input placeholder='Name' className='newLang-input' ref={inputName}></input>

@@ -1,14 +1,11 @@
 import React, {useContext} from 'react'; 
 import './AddNoteBtn.css';
-import { AppProvider } from '../../AppContext';
+import { ACTIONS, AppProvider } from '../../AppContext';
 
 const AddNoteBtn = (props) => {
     const curr = useContext(AppProvider);
-
-
     const handleAddNote = () => {
-        curr.closeDropMenu();
-        curr.toggleAddNoteClick();
+        curr.callDispatch({type: ACTIONS.TOGGLE_ADD_NOTE_POPUP})
     }
     return (
         <div className="add-noteBtn" onClick={handleAddNote}>Add Note</div>
