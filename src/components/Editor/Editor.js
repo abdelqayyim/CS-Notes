@@ -83,6 +83,13 @@ const Editor = (props) => {
     Prism.highlightElement(result_element);
   };
   useEffect(() => {}, [lang]);
+  const fixText = (text) => {
+    console.log(text)
+  }
+
+  let original = props.noteDetail.replace(/&gt;/gi, "> ").replace(/&lt;/gi, "< ").replace(/&amp;/gi, "& ").replace(/</gi, "< ");
+
+  // fixText(props.noteDetail)
 
   return (
     <div className="code-section">
@@ -105,13 +112,14 @@ const Editor = (props) => {
           onKeyDown={(e) => checkTab(note.current, e)}
           className="textarea"
         >
-          {props.noteDetail}
+          {original}
         </textarea>
 
 
         <pre className={`language-${noteLanguage} script`} ref={pre}>
           <code ref={result} className="highlight">
-            {props.noteDetail}
+            {/* {props.noteDetail.replace(/&gt;/gi, "> ").replace(/&lt;/gi, "< ").replace(/&amp;/gi, "& ")} */}
+            {original}
           </code>
         </pre>
 
