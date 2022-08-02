@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/CS-Notes/static/css/main.735b3cc8.css",
+    "main.js": "/CS-Notes/static/js/main.1548c8fc.js",
+    "static/js/787.38ce6931.chunk.js": "/CS-Notes/static/js/787.38ce6931.chunk.js",
+    "index.html": "/CS-Notes/index.html",
+    "main.735b3cc8.css.map": "/CS-Notes/static/css/main.735b3cc8.css.map",
+    "main.1548c8fc.js.map": "/CS-Notes/static/js/main.1548c8fc.js.map",
+    "787.38ce6931.chunk.js.map": "/CS-Notes/static/js/787.38ce6931.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.735b3cc8.css",
+    "static/js/main.1548c8fc.js"
+  ]
+}
