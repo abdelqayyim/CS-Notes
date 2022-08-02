@@ -17,6 +17,12 @@
   font-family: monospace;
   line-height: 1.5;
 }
+.delete{
+  background-color: rgb(216, 73, 73);
+}
+.save{
+  background-color: rgb(50, 127, 50);
+}
 
 .textarea {
   background-color: transparent;

@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# ***CS NOTES***
+## *What is it?*
+- ### This web app uses ReactJS, NodeJS, Express, MONGODB and Mongoose to save and retrieve user inputted notes. I created this web app to facilitate note taking when learning computer science related technical skills. Most of my technicals skills I learn through youtube and Udemy courses, so instead of creating a google docs for each video or lesson, I thought having a web app where each language has its own notes would save me a lot of time. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## *How To Use The Web App?*
+1. ### *Adding a Language*
+    1. To add a language, press the button with the arrow facing down, then choose the `Add Language` Option. 
+    2. In the Input field that appears, enter a language/course that is not already added. 
+2. ### *Deleting a Language*
+    1. To add a language, press the button with the arrow facing down, then choose the `Delete Language` Option. 
+    2. In the input field that appears, enter the name of the language/course you want to delete. 
+3. ### *How to Take Notes?*
+    1. One a language/course is added, press the button that appears with the course name on it. 
+    2. A new button should now be visible with the text `Add Note`, press that button. 
+    3. A new PopUp should appear, where you will need to input the note's title and description. 
+    4. Press the `CREATE` button after inserting the title and description of the new note. 
+4. ### *Insert a Note/Text*
+    1. Press on the newly create note to display a PopUp that will allow you write text and code to the note. 
+5. ### *Insert Text/Code and Saving*
+    1. Once the note is pressed and the PopUp appears, there should be should button att he button of the PopUp `+NOTE` and `+CODE`. 
+    2. The `+NOTE` button will allow you to insert text in the note and the `+CODE` will allow you to insert a code excerpt in the note. 
+    3. Once the notes are added, press the `SAVE` button to save the note. 
+6. ### *Editing the Note*
+    1. Each code excerpt or text can be modified, just press on the text or code section and edit. Do not forget to press the `SAVE` button to save the changes. 
+7. ### *Deleting a Note*
+    1. If you wish to remove a code excerpt of a text excerpt, just remove all the input, once the note is save the block will not appear. 
+    2. To delete the entirety of the note, press the `DELETE` button at the bottom left of the PopUp. 
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# ENJOY LEARNING !!!

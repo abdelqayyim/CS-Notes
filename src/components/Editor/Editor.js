@@ -120,14 +120,14 @@ const Editor = (props) => {
 
       <div className="note-btns">
         <button
-          className="btn-note"
+          className="btn-note delete"
           ref={deleteBtn}
           onClick={() => props.onDelete(note.current.value)}
         >
           Delete
         </button>
         <button
-          className="btn-note"
+          className="btn-note save"
           ref={saveBtn}
           onClick={() => props.onSave(note.current.value)}
         >
