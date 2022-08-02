@@ -118,8 +118,7 @@ const Editor = (props) => {
 
         <pre className={`language-${noteLanguage} script`} ref={pre}>
           <code ref={result} className="highlight">
-            {/* {props.noteDetail.replace(/&gt;/gi, "> ").replace(/&lt;/gi, "< ").replace(/&amp;/gi, "& ")} */}
-            {original}
+            {props.noteDetail.replace(/&gt;/gi, "> ").replace(/&lt;/gi, "< ").replace(/&lt/gi, "< ").replace(/&amp;/gi, "& ")}
           </code>
         </pre>
 
