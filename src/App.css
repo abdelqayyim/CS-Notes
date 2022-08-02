@@ -44,3 +44,9 @@
   font-weight: bold;
 }
 
+/* mobile */
+@media screen and (max-width: 480px) {
+  .my-cs-notes{
+      font-size: 3rem;
+  }
+}

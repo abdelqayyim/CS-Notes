@@ -41,3 +41,17 @@
 .error-message{
     font-size: 1.3rem;
 }
+
+@media screen and (max-width: 480px) {
+    .error-box{
+        bottom: -100px;
+        width: fit-content;
+    }
+    .error-message{
+        font-size: 0.8rem;
+    }
+    .mark{
+        margin-right: 10px;
+        font-size: 1rem;
+    }
+}

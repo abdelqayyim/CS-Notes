@@ -1,18 +1,14 @@
 import React, {useCallback, useContext} from 'react'; 
 import './LanguageButton.css';
-
 import { ACTIONS, AppProvider } from '../../AppContext';
 
-const URL = 'https://frequentquestions.herokuapp.com/languages/';
-
-
 const LanguageButton = (props) => {
-    const curr = useContext(AppProvider);
-
+    const curr = useContext(AppProvider); // global context
 
     const languageButtonHandler = () => {
+        //change the global current language everytime a new language is pressed
         curr.callDispatch({ type: ACTIONS.CHANGE_CURRENT_LANGUAGE, payload: { language: props.name } });
-        props.moveUp();
+        props.moveUp(); //move the app title and the buttons up (animation)
         curr.fetchNotes(props.name.toLowerCase());
     }
 

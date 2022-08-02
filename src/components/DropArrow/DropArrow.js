@@ -1,14 +1,10 @@
-import React, {useState, Fragment, useContext} from 'react'; 
+import React, {Fragment, useContext} from 'react'; 
 import './DropArrow.css';
 import { ACTIONS, AppProvider } from '../../AppContext';
 
 const DropArrow = (props) => {
     const curr = useContext(AppProvider);
-    const [clicked, setClicked] = useState(false);
-
     const addLanguageHandler = () => {
-        // setClicked(false);//close the dropdown
-        // curr.addLanguageClick();
         curr.callDispatch({type: ACTIONS.TOGGLE_ADD_LANGUAGE_POPUP})
     }
     const deleteLanguageHandler = () => {

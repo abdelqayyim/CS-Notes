@@ -9,6 +9,7 @@ pre[class*="language-"] {
   font-size: 1em; */
   text-align: left;
   white-space: pre;
+  /* white-space: pre; */
   word-spacing: normal;
   word-break: normal;
   word-wrap: normal;
@@ -166,4 +167,35 @@ pre[class*="language-"].line-numbers > code {
 }
 .command-line span.token.output {
   opacity: 0.7;
+}
+
+
+/* phone portrait */
+@media screen and (max-width: 500px) {
+  code[class*="language-"]{
+    font-size: 0.8rem !important;
+    color: #f8f8f2;
+    background: 0 0;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    -moz-tab-size: 2;
+    -o-tab-size: 2;
+    tab-size: 2;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+}
+/* tablet portrait */
+@media screen and (min-width: 501px) and (max-width: 999px){
+  
+}
+@media screen and (min-width: 1000px) {
+  
 }

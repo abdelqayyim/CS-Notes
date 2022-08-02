@@ -78,3 +78,18 @@
 .overlay-container{
     position: relative;
 }
+@media screen and (max-width: 480px) {
+    .newNote-popup{
+        width: 80%;
+    }
+    .newNote-btn{
+        font-size: 1rem;
+        height: 30px;
+    }
+    .newNote-title{
+        font-size: 1rem;
+    }
+    .newNote-description{
+        font-size: 1rem;
+    }
+}

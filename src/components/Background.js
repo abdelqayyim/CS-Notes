@@ -13,7 +13,6 @@ const Background = (props) => {
         }
     }
     
-
     return (
         <div className={props.className} onClick={backgroundClickHandler}>
             {props.children}

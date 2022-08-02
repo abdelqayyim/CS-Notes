@@ -10,9 +10,6 @@ const LanguagesBox = (props) => {
     const curr = useContext(AppProvider);
     
     useEffect(() => {
-        // curr.updateMessage("Loading Data");
-        // curr.callDispatch({ type: ACTIONS.FETCH_LANGUAGES }, "Hello");
-        // console.log(curr.currentLanguages)
         curr.fetchLanguages();
     }, [])
 
@@ -32,7 +29,6 @@ const LanguagesBox = (props) => {
                 })}
                 <DropArrow/>
             </div>
-            
             {curr.currentLanguage !== undefined  && curr.currentNote.noteTitle === undefined && <AddNoteBtn/>}
         </div>
     )

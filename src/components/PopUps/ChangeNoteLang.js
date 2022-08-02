@@ -1,4 +1,4 @@
-import React, {useState, useRef, useContext} from 'react'; 
+import React, {useRef, useContext} from 'react'; 
 import ReactDOM from 'react-dom';
 import './ChangeNoteLang.css';
 import { AppProvider } from '../../AppContext';
@@ -8,13 +8,12 @@ const ChangeNoteLang = (props) => {
     let noteLang = useRef();
     const clickHandler = () => {
         if (noteLang.current.value.length !== 0) {
-            // props.changeNoteLanguage(noteLang.current.value);
             curr.updateNoteLanguage(noteLang.current.value);
             props.closePop();
         }
     }
-    return (
 
+    return (
         ReactDOM.createPortal(
         <div className='parent-div'>
             <div className='over' onClick={props.closePop}></div>

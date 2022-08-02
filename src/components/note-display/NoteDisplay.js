@@ -1,15 +1,12 @@
 import React, {useContext, useRef, useCallback} from 'react'; 
 import Note from '../note/Note';
 import './NoteDisplay.css';
-import { ACTIONS,AppProvider } from '../../AppContext';
+import { AppProvider } from '../../AppContext';
 import Editor from '../Editor/Editor';
-
 
 const NoteDisplay = (props) => {
     const curr = useContext(AppProvider);
-    let note = useRef();
-    let result = useRef();
-    let pre = useRef();
+
     let title = useRef();
     let description = useRef();
 
@@ -64,11 +61,11 @@ const NoteDisplay = (props) => {
 
                     <Editor noteLanguage={curr.currentLanguage.toString().toLowerCase()} noteDetail={curr.currentNote.noteDetail} onSave={saveNoteHandler} onDelete={deleteNoteHandler} />
                     
-                    
                 </div>
+                
                 <div className='note-suggestion'>
-                {curr.currentNotes.map(note => 
-                    <Note title={note.title} description={note.description} key={ note._id} noteDetail={note.noteDetail} noteLanguage={ note.noteLanguage}/>
+                    {curr.currentNotes.map(note =>
+                        note._id !== curr.currentNote.id && <Note title={note.title} description={note.description} key={ note._id} noteDetail={note.noteDetail} noteLanguage={ note.noteLanguage}/>
                 )}
                 </div>
             </div>

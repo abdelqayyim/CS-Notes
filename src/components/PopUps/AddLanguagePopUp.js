@@ -1,4 +1,4 @@
-import React, {useState, useContext, useRef, useCallback} from 'react'; 
+import React, {useState, useContext, useRef} from 'react'; 
 import './AddLanguagePopUp.css';
 import  ReactDOM  from 'react-dom';
 import { ACTIONS,AppProvider } from '../../AppContext';
@@ -13,6 +13,7 @@ const AddLanguagePopUp = (props)=>{
     const overlayHandler = () => {
         curr.callDispatch({type: ACTIONS.TOGGLE_ADD_LANGUAGE_POPUP})
     }
+
     const addNewLanguage = () => {
         let input = inputName.current.value.trim();
         if (input.length === 0) {
@@ -21,10 +22,10 @@ const AddLanguagePopUp = (props)=>{
                 curr.callDispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: false,errorType: 'negative',message: `Input Field Cannot be Empty`}})
             },2000)
             return
-
         }
         curr.addLanguage(input.toLowerCase());
     }
+
     const enterKeyPress = (key) => {
         console.log(key.code === "Enter")
         if (key.code === "Enter") {

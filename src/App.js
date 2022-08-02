@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import Background from './components/Background';
-import LanguagesBox from './components/buttons-box/LanguagesBox';
+import LanguagesBox from './components/LanguagesBox/LanguagesBox';
 import NoteDisplay from './components/note-display/NoteDisplay';
 import Prism from 'prismjs';
 
@@ -17,11 +17,10 @@ function App() {
   const moveUp = () => {//this shift the title and language up when a language is pressed
     setMove(true);
   }
-
   return (
     <AppContext>
       <Background className={move === true ? 'background move-up' : 'background'}>
-        <p className='my-cs-notes'>My CS Notes</p>
+        <p className='my-cs-notes' onClick={()=> window.location.reload()}>My CS Notes</p>
         <LanguagesBox moveUp={moveUp} />
         <NoteDisplay/>
       </Background>
@@ -30,8 +29,5 @@ function App() {
   );
 }
 
-// TASK: ading and removing language
-// TASK: adding and removing note
-// TASK: editing title and description and code
-// TASK: code section
+// TASK: page transitions maybe/
 export default App;

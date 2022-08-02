@@ -7,12 +7,11 @@
     position: relative;
     margin: 0 5px;
     border-radius: 5px;
-    font-size: 1.5vw;
+    font-size: 1rem;
     font-family:'Bitter', sans-serif;
     padding: 5px 10px;
     border: none;
     background-color:transparent;
-    /* background-color:#3898ec; */
     color: black;
     transition-timing-function: ease-out;
     transition-duration: 0.2s;
@@ -24,11 +23,34 @@
 .btn:hover{
     transform: scale(1.1);
     border: 1px solid #3898ec;
-    /* background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); */
 }
 
 .btn.selected{
     transform: scale(1.1);
     border: 1px solid #3898ec;
     background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+}
+
+@media screen and (max-width: 480px) {
+    .btn{
+        font-size: 0.5rem;
+        border: 1px solid black;
+        margin-bottom: 5px;
+    }
+}
+
+/* phone portrait */
+@media screen and (max-width: 500px) {
+    
+}
+/* tablet portrait */
+@media screen and (min-width: 501px) and (max-width: 999px){
+    .btn{
+        margin-bottom: 5px;
+    }
+}
+@media screen and (min-width: 1000px) {
+    .btn{
+        margin-bottom: 5px;
+    }
 }

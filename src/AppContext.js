@@ -5,6 +5,10 @@ import DeleteLanguagePopUp from './components/PopUps/DeleteLanguagePopUp';
 import InputError from './components/PopUps/InputError';
 import AddNotePopUp from './components/PopUps/AddNotePopUp';
 
+
+//TASK: when a new language is added press it automaticall
+//TASK: when a new note is added press it automatically
+
 const ACTIONS = {
   FETCH_LANGUAGES: "fetch-languages",
   FETCH_NOTES: "fetch-notes",
@@ -21,62 +25,6 @@ const ACTIONS = {
     TOGGLE_DELETE_LANGUAGE_POPUP: 'toggle-delete-language-popup',
     TOGGLE_ADD_NOTE_POPUP: 'toggle-add-note-popup'
 };
-
-// let currentDetail = {
-//     currentLanguage:undefined,
-//     currentLanguages: [],
-//     currentNote: { 'noteTitle': undefined, 'noteDescription': undefined, 'noteDetails': undefined, "noteID": undefined },
-//     showSpinner: {"isShowing":false,"spinnerMessage":undefined},
-//     showInputResponse:{'isErrorInput':false,"errorType":undefined,"message": undefined},
-// }
-// const reducer = (state, action, payload) => {
-//     switch (action.type) {
-//         case ACTIONS.FETCH_LANGUAGES:
-//             const getLanguges = async () => {
-//                 reducer(state, { type: ACTIONS.SHOW_SPINNER }, "");
-//                 const response = await fetch('https://frequentquestions.herokuapp.com/languages/')
-//                 const data = await response.json();
-
-//                 state.currentLanguages = data.reverse;
-//                 reducer(state, { type: ACTIONS.HIDE_SPINNER }, "");
-
-//             }
-//             getLanguges();
-//             return {...state}
-//         case ACTIONS.HIDE_SPINNER:
-//             console.log('HIDING SPINNER')
-//             state.showSpinner = { isShowing: false, spinnerMessage: "Fetching Languages" };
-//             return {...state}
-//         case ACTIONS.SHOW_SPINNER:
-//             console.log('SHOWING SPINNER')
-//             state.showSpinner = { isShowing: true, spinnerMessage: "Fetching Languages" };
-//             return {...state}
-//         case ACTIONS.FETCH_NOTES:
-//             return state
-//         case ACTIONS.SHOW_SPINNER:
-//             return state
-//         case ACTIONS.SHOW_INPUT_RESPONSE:
-//             return state
-//         case ACTIONS.IS_LOADING:
-//             return state
-//         case ACTIONS.TOGGLE_MENU:
-//             return state
-//         case ACTIONS.ADD_NOTE:
-//             return state
-//         case ACTIONS.DELETE_NOTE:
-//             return state
-//         case ACTIONS.CURRENT_LANGUAGE:
-//             return state
-//         case ACTIONS.CURRENT_NOTE:
-//             return state
-//         case ACTIONS.CHANGE_CURRENT_LANGUAGE:
-//             return state
-//         case ACTIONS.CHANGE_CURRENT_NOTE:
-//             return state
-//         default:
-//             return
-//     }
-// }
 
 export const AppProvider = React.createContext();
 const AppContext = (props) => {
@@ -157,7 +105,7 @@ const AppContext = (props) => {
         }
     };
 
-    const [state, dispatch] = useReducer(reducer, {
+    const initialState = {
         currentLanguage: undefined,
         currentLanguages: [],
         currentNotes: [],
@@ -208,20 +156,16 @@ const AppContext = (props) => {
             body: JSON.stringify(note),
         })
           const data = await response;
-        //   dispatch({ type: ACTIONS.CHANGE_CURRENT_NOTE, payload: { title: note.title, description:note.description, detail:note.noteDetail, id:note.noteId } })
         dispatch({ type: ACTIONS.HIDE_SPINNER, payload:{message: "Saving Note"} });
 
         if (response.ok) {
             dispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: true,errorType: 'positive',message: 'Note was Successfully Saved',}})
-            // curr.manageBottomMessage(true, "positive", `Note was Successfully Deleted`);
             setTimeout(() => { 
                 dispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: false,errorType: 'positive',message: 'Note was Successfully Saved',}})
             }, 2000)
-            // document.querySelector(".selected").click();
         }
         else {
             dispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: true,errorType: 'negative',message: 'Problem Saving Note',}})
-            // curr.manageBottomMessage(true, "positive", `Note was Successfully Deleted`);
             setTimeout(() => { 
                 dispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: false,errorType: 'negative',message: 'Problem Saving Note',}})
             }, 2000)
@@ -240,15 +184,13 @@ const AppContext = (props) => {
           
           if (response.ok) {
             dispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: true,errorType: 'positive',message: 'Note Successfully Deleted',}})
-            // curr.manageBottomMessage(true, "positive", `Note was Successfully Deleted`);
             setTimeout(() => { 
-                dispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: false,errorType: 'negative',message: 'Note Successfully Deleted',}})
+                dispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: false,errorType: 'positive',message: 'Note Successfully Deleted',}})
             }, 2000)
             document.querySelector('.selected').click();
         }
         else {
-            dispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: true,errorType: 'positive',message: 'Error While Deleting Note',}})
-            // curr.manageBottomMessage(true, "positive", `Note was Successfully Deleted`);
+            dispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: true,errorType: 'negative',message: 'Error While Deleting Note',}})
             setTimeout(() => { 
                 dispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: false,errorType: 'negative',message: 'Error While Deleting Note',}})
             }, 2000)
@@ -335,7 +277,9 @@ const AppContext = (props) => {
             },2000)
         }
       }
-  });
+    }
+
+    const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <AppProvider.Provider value={state}>

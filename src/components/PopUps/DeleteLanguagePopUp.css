@@ -21,7 +21,7 @@
 .deletelanguage-popup.active{
     visibility: visible;
 }
-.newLang-input{
+.deleteLang-input{
     width: 50%;
     height: 20%;
     border-radius: 5px;
@@ -66,4 +66,18 @@
 }
 .delete-overlay-container{
     position: relative;
+}
+
+@media screen and (max-width: 480px) {
+    .deletelanguage-popup{
+        width: 80%;
+    }
+    .delete-btn{
+        font-size: 1rem;
+        height: 30px;
+    }
+    .deleteLang-input{
+        font-size: 1rem;
+        width: 70%;
+    }
 }

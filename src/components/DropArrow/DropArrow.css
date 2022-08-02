@@ -66,3 +66,17 @@
     visibility: visible;
     background-color: white;
 }
+
+
+@media screen and (max-width: 480px) {
+    .dropInfo.active{
+        width: 100px;
+        height: 60px;
+        z-index: 100;
+    }
+    .dropInfo > li{
+        font-size: 0.7rem;
+        font-weight: bold;
+        outline: none;
+    }
+}

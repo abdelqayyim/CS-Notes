@@ -2,6 +2,9 @@
     box-sizing: border-box;
     margin: 0;
 }
+/* html{
+    background-color: red;
+} */
 .background{
     background-color: white;
     /* background-color: black; */
@@ -13,4 +16,25 @@
 }
 .move-up{
    justify-content: start;
+}
+
+
+
+/* phone portrait */
+@media screen and (max-width: 500px) {
+    .background{
+    }
+}
+/* tablet portrait */
+@media screen and (min-width: 501px) and (max-width: 999px){
+    .background{
+        height: 100vh;
+        overflow: hidden;
+    }
+}
+@media screen and (min-width: 1000px) {
+    .background{
+        height: 100vh;
+        overflow: hidden;
+    }
 }

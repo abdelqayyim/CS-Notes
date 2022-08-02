@@ -1,13 +1,12 @@
 import React, {useContext} from 'react'; 
 import './Note.css';
-
 import { ACTIONS,AppProvider } from '../../AppContext';
 
 const Note = (props)=>{
     const curr = useContext(AppProvider);
     const noteHandler = () => {
-        curr.callDispatch({ type: ACTIONS.CHANGE_CURRENT_NOTE, payload: { title: props.title, description:props.description, detail:props.noteDetail, id:props.noteId } })
-        // curr.clickNote(props);
+        curr.callDispatch({ type: ACTIONS.CHANGE_CURRENT_NOTE, payload: { title: props.title, description: props.description, detail: props.noteDetail, id: props.noteId } })
+        
     }
     return (
         <div className='note-info' onClick={noteHandler}>
@@ -21,6 +20,4 @@ const Note = (props)=>{
         </div>
     )
 };
-
-//TASK: When view notes, make sure to scroll back up when a note is pressed
 export default Note;

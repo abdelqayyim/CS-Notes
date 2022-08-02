@@ -67,3 +67,18 @@
 .overlay-container{
     position: relative;
 }
+
+
+@media screen and (max-width: 480px) {
+    .addlanguage-popup{
+        width: 80%;
+    }
+    .add-btn{
+        font-size: 1rem;
+        height: 30px;
+    }
+    .newLang-input{
+        font-size: 1rem;
+        width: 70% !important;
+    }
+}
