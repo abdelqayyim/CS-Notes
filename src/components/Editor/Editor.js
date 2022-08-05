@@ -82,12 +82,10 @@ const Editor = (props) => {
     // Syntax Highlight
     Prism.highlightElement(result_element);
   };
-  useEffect(() => {}, [lang]);
-  const fixText = (text) => {
-    console.log(text)
-  }
+  
 
-  let original = props.noteDetail.replace(/&gt;/gi, "> ").replace(/&lt;/gi, "< ").replace(/&amp;/gi, "& ").replace(/</gi, "< ");
+  let original = props.noteDetail.replace(/&gt;/gi, ">").replace(/&lt;(?! )/gi, "< ").replace(/&amp;/gi, "&").replace(/</gi, "<");
+  // let original = props.noteDetail.replace(/&gt;/gi, "> ").replace(/&lt;/gi, "<").replace(/&amp;/gi, "& ").replace(/</gi, "< ");
 
   // fixText(props.noteDetail)
 
