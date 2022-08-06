@@ -6,7 +6,7 @@ const Note = (props)=>{
     const curr = useContext(AppProvider);
     const noteHandler = () => {
         curr.callDispatch({ type: ACTIONS.CHANGE_CURRENT_NOTE, payload: { title: props.title, description: props.description, detail: props.noteDetail, id: props.noteId } })
-        
+        props.reRender();
     }
     return (
         <div className='note-info' onClick={noteHandler}>

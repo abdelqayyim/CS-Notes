@@ -21,6 +21,9 @@ const Editor = (props) => {
   let deleteBtn = useRef();
   let saveBtn = useRef();
   const curr = useContext(AppProvider);
+  if (document.querySelector(".textarea") !== null) {
+    document.querySelector(".textarea").value = props.noteDetail;
+  }
 
   setTimeout(() => {
     Prism.highlightAll();
@@ -80,10 +83,9 @@ const Editor = (props) => {
       .replace(new RegExp("&", "g"), "&")
       .replace(new RegExp("<", "g"), "<"); /* Global RegExp */
     // Syntax Highlight
-    Prism.highlightElement(result_element);
+    Prism.highlightElement(result_element)
+    original = text;
   };
-  
-
   let original = props.noteDetail.replace(/&gt;/gi, ">").replace(/&lt;(?! )/gi, "< ").replace(/&amp;/gi, "&").replace(/</gi, "<");
   // let original = props.noteDetail.replace(/&gt;/gi, "> ").replace(/&lt;/gi, "<").replace(/&amp;/gi, "& ").replace(/</gi, "< ");
 
@@ -110,7 +112,7 @@ const Editor = (props) => {
           onKeyDown={(e) => checkTab(note.current, e)}
           className="textarea"
         >
-          {original}
+          {props.noteDetail}
         </textarea>
 
 

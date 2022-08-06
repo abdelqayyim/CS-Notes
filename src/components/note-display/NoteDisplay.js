@@ -1,11 +1,13 @@
-import React, {useContext, useRef, useCallback} from 'react'; 
+import React, {useContext, useRef, useCallback, useState} from 'react'; 
 import Note from '../note/Note';
 import './NoteDisplay.css';
 import { AppProvider } from '../../AppContext';
 import Editor from '../Editor/Editor';
 
 const NoteDisplay = (props) => {
+    console.log("RENDERED NOTE-DISPLAY")
     const curr = useContext(AppProvider);
+    const [render, setRender] = useState(0); //this is just so I can re-render note-display when a note is pressed from note-suggestion
 
     let title = useRef();
     let description = useRef();
@@ -16,6 +18,11 @@ const NoteDisplay = (props) => {
           str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
         }
         return str.join(' ');
+    }
+    console.log(render);
+    const reRender = () => {
+        setRender(prev => prev + 1);
+        console.log(curr.currentNote.noteDetail)
     }
 
     const saveNoteHandler = useCallback(async (detail) => {//detail is the code the user has inputted
@@ -50,6 +57,7 @@ const NoteDisplay = (props) => {
     else if (curr.currentLanguage !== undefined && curr.currentNote.noteTitle !== undefined) {
         return (
             <div className='clickedNote-container'>
+                { ()=>console.log("RENDERED NOTE DISPLAY")}
                 <div className='note-section'>
                     <div className='title' contentEditable={true} ref={title}>
                         { titleCase(curr.currentNote.noteTitle)}
@@ -64,8 +72,9 @@ const NoteDisplay = (props) => {
                 </div>
                 
                 <div className='note-suggestion'>
+                { curr.currentNote.id}
                     {curr.currentNotes.map(note =>
-                        note._id !== curr.currentNote.id && <Note title={note.title} description={note.description} key={ note._id} noteDetail={note.noteDetail} noteLanguage={ note.noteLanguage}/>
+                        note._id !== curr.currentNote.id && <Note title={note.title} description={note.description} key={ note._id} noteDetail={note.noteDetail} noteLanguage={ note.noteLanguage} reRender={ ()=>reRender()}/>
                 )}
                 </div>
             </div>
