@@ -13,7 +13,7 @@ const LanguageButton = (props) => {
     }
 
     const correspondsToCurrentLanguage = (curr.currentLanguage !== undefined) && (curr.currentLanguage.toLowerCase() === props.name.toLowerCase()); 
-    const classname = correspondsToCurrentLanguage? "btn selected" : "btn";
+    const classname = correspondsToCurrentLanguage? `btn selected ${curr.currentAppMode}` : `btn ${curr.currentAppMode}`;
     
     return (
          <button className={classname} onClick={languageButtonHandler} name={props.name} id={props._id}>

@@ -3,11 +3,10 @@ import Note from '../note/Note';
 import './NoteDisplay.css';
 import { AppProvider } from '../../AppContext';
 import Editor from '../Editor/Editor';
+import NoteSuggestion from './NoteSuggestion';
 
 const NoteDisplay = (props) => {
-    console.log("RENDERED NOTE-DISPLAY")
     const curr = useContext(AppProvider);
-    const [render, setRender] = useState(0); //this is just so I can re-render note-display when a note is pressed from note-suggestion
 
     let title = useRef();
     let description = useRef();
@@ -18,11 +17,6 @@ const NoteDisplay = (props) => {
           str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
         }
         return str.join(' ');
-    }
-    console.log(render);
-    const reRender = () => {
-        setRender(prev => prev + 1);
-        console.log(curr.currentNote.noteDetail)
     }
 
     const saveNoteHandler = useCallback(async (detail) => {//detail is the code the user has inputted
@@ -57,12 +51,11 @@ const NoteDisplay = (props) => {
     else if (curr.currentLanguage !== undefined && curr.currentNote.noteTitle !== undefined) {
         return (
             <div className='clickedNote-container'>
-                { ()=>console.log("RENDERED NOTE DISPLAY")}
                 <div className='note-section'>
-                    <div className='title' contentEditable={true} ref={title}>
+                    <div className={ `title ${curr.currentAppMode}`} contentEditable={true} ref={title}>
                         { titleCase(curr.currentNote.noteTitle)}
                     </div>
-                    <div className='description' ref={description} contentEditable={true}>
+                    <div className={`description ${curr.currentAppMode}`} ref={description} contentEditable={true}>
                         {curr.currentNote.noteDescription.length === 0 && "No Description"}
                     { curr.currentNote.noteDescription}
                     </div>
@@ -70,13 +63,9 @@ const NoteDisplay = (props) => {
                     <Editor noteLanguage={curr.currentLanguage.toString().toLowerCase()} noteDetail={curr.currentNote.noteDetail} onSave={saveNoteHandler} onDelete={deleteNoteHandler} />
                     
                 </div>
+
+                <NoteSuggestion notes={curr.currentNotes} />
                 
-                <div className='note-suggestion'>
-                { curr.currentNote.id}
-                    {curr.currentNotes.map(note =>
-                        note._id !== curr.currentNote.id && <Note title={note.title} description={note.description} key={ note._id} noteDetail={note.noteDetail} noteLanguage={ note.noteLanguage} reRender={ ()=>reRender()}/>
-                )}
-                </div>
             </div>
         )
     }

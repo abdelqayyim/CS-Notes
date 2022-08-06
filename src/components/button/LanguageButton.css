@@ -26,7 +26,13 @@
     transform: scale(1.1);
     border: 1px solid #3898ec;
 }
-
+.btn.dark{
+    color: white;
+    border: 1px solid white;
+}
+.btn.dark:hover{
+    border: 1px solid #3898ec;
+}
 .btn.selected{
     transform: scale(1.1);
     border: 1px solid #3898ec;

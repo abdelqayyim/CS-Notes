@@ -22,6 +22,13 @@
     transition-timing-function: ease-out;
     transition-duration: 0.2s;
 }
+.btn-dropdown.dark{
+    background-color: black;
+}
+.arrowBtn.dark{
+    color: white;
+    background-color: black;
+}
 .arrowBtn:hover{
     transform: scale(1.1);
     border: 1px solid #3898ec;

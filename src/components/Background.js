@@ -14,7 +14,7 @@ const Background = (props) => {
     }
     
     return (
-        <div className={props.className} onClick={backgroundClickHandler}>
+        <div className={`${props.className} " " ${curr.currentAppMode}`} onClick={backgroundClickHandler}>
             {props.children}
         </div>
     )

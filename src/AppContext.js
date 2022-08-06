@@ -23,7 +23,8 @@ const ACTIONS = {
     HIDE_SPINNER: "hide-spinner",
     TOGGLE_ADD_LANGUAGE_POPUP: 'toggle-add-language-popup',
     TOGGLE_DELETE_LANGUAGE_POPUP: 'toggle-delete-language-popup',
-    TOGGLE_ADD_NOTE_POPUP: 'toggle-add-note-popup'
+    TOGGLE_ADD_NOTE_POPUP: 'toggle-add-note-popup',
+    TOGGLE_APP_MODE: 'toggle-app-mode'
 };
 
 export const AppProvider = React.createContext();
@@ -100,12 +101,20 @@ const AppContext = (props) => {
                     ...state,
                     activeAddNotePopUp: !state.activeAddNotePopUp
                 }
+            case ACTIONS.TOGGLE_APP_MODE:
+                return {
+                    ...state,
+                    currentAppMode: state.currentAppMode === 'light'? 'dark': 'light',
+                }
             default:
                 return;
         }
     };
 
+    const userCurrentTime = new Date().getHours();
+    let mode = (userCurrentTime >= 18 || userCurrentTime <= 8) ? 'dark' : 'light';
     const initialState = {
+        currentAppMode: mode,
         currentLanguage: undefined,
         currentLanguages: [],
         currentNotes: [],

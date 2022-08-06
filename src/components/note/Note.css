@@ -19,6 +19,9 @@
     /* transform: scale(1.03); */
     border: 1px solid #3898ec;
 }
+.note-info.dark{
+    color: white;
+}
 .note-title{
     height: 20%;
     font-size: 1rem;

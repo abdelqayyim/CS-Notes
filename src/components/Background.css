@@ -18,7 +18,10 @@
    justify-content: start;
 }
 
-
+.background.dark{
+    background-color: black;
+    color: white
+}
 
 /* phone portrait */
 @media screen and (max-width: 500px) {

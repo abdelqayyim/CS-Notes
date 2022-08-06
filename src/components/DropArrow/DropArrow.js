@@ -16,7 +16,7 @@ const DropArrow = (props) => {
     
     return (
         <Fragment>
-            <div className="btn-dropdown">
+            <div className={`btn-dropdown ${curr.currentAppMode}`}>
                 <button className='arrowBtn' onClick={arrowClickHandler}><i className={curr.activeDropMenu? "fa-solid fa-angle-up":"fa-solid fa-angle-down"}></i> </button>
                 <ul className={curr.activeDropMenu? "dropInfo active":"dropInfo"}>
                     <li className="add-languageOption" onClick={addLanguageHandler}>Add Language</li>
