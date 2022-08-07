@@ -21,28 +21,30 @@
     display: block;
     width: 40px;
     height: 20px;
-    background-color: #292C35;
+    background-color: white;
     cursor: pointer;
     border-radius: 20px;
     overflow: hidden;
     transition: ease-in 0.8s;
+    border: 1px solid white;
 }
 .check::before{
     content: '';
     position: absolute;
     top: 2px;
     left: 2px;
-    background: white;
+    background: black;
     width: 16px;
     height: 16px;
     border-radius: 50%;
     transition: 1s;
+    transform: translateY(-1px);
 }
 .check.dark::before{
-    background-color: black;
-    transform: translateX(120%);
+    background-color: white;
+    transform: translateX(120%) translateY(-1px);
 }
 .check.dark{
-    background-color: white;
+    background-color: #292C35;
 }
 
