@@ -21,7 +21,7 @@
     display: block;
     width: 40px;
     height: 20px;
-    background-color: white;
+    background-color: #292C35;
     cursor: pointer;
     border-radius: 20px;
     overflow: hidden;
@@ -32,17 +32,17 @@
     position: absolute;
     top: 2px;
     left: 2px;
-    background: black;
+    background: white;
     width: 16px;
     height: 16px;
     border-radius: 50%;
     transition: 1s;
 }
 .check.dark::before{
-    background-color: white;
+    background-color: black;
     transform: translateX(120%);
 }
 .check.dark{
-    background-color: #292C35;
+    background-color: white;
 }
 
