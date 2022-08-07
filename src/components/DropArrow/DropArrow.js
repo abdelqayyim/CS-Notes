@@ -10,15 +10,15 @@ const DropArrow = (props) => {
     const deleteLanguageHandler = () => {
         curr.callDispatch({type: ACTIONS.TOGGLE_DELETE_LANGUAGE_POPUP})
     }
-    const arrowClickHandler = () => {
+    const arrowClickHandler = (e) => {
         curr.callDispatch({type: ACTIONS.TOGGLE_MENU, payload:{mode: !curr.activeDropMenu}})
     }
     
     return (
         <Fragment>
             <div className={`btn-dropdown ${curr.currentAppMode}`}>
-                <button className='arrowBtn' onClick={arrowClickHandler}><i className={curr.activeDropMenu? "fa-solid fa-angle-up":"fa-solid fa-angle-down"}></i> </button>
-                <ul className={curr.activeDropMenu? "dropInfo active":"dropInfo"}>
+                <button className={`arrowBtn ${curr.currentAppMode}`} onClick={(e)=>arrowClickHandler(e)}><i className={curr.activeDropMenu? "fas fa-solid fa-angle-up":"fas fa-solid fa-angle-down"}></i> </button>
+                <ul className={curr.activeDropMenu? `dropInfo active ${curr.currentAppMode}`:`dropInfo ${curr.currentAppMode}`}>
                     <li className="add-languageOption" onClick={addLanguageHandler}>Add Language</li>
                     <li className="delete-languagegOption" onClick={deleteLanguageHandler}>Delete Language</li>
                 </ul>

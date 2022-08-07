@@ -12,6 +12,7 @@ const DeleteLanguagePopUp = (props) => {
 
     const overlayHandler = () => {
         curr.callDispatch({ type: ACTIONS.TOGGLE_DELETE_LANGUAGE_POPUP });
+        setOverlayClicked(true);
     }
 
     const deleteLanguage = () => {
@@ -24,10 +25,14 @@ const DeleteLanguagePopUp = (props) => {
             return
         }
         curr.deleteLanguage(input);
+        setTimeout(() => {
+            if(input === curr.currentLanguage){
+                document.querySelector(".my-cs-notes").click();//return to main page
+            }
+        },500)
     }
 
     const enterKeyPress = (key) => {
-        console.log(key.code === "Enter")
         if (key.code === "Enter") {
             deleteLanguage();
         }

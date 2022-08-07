@@ -8,7 +8,7 @@ const Background = (props) => {
     const curr = useContext(AppProvider);
 
     const backgroundClickHandler = (event) => {
-        if (event.target.classList[0] !== "fa-solid") {
+        if (event.target.classList[0] !== "fas") {
             curr.callDispatch({type: ACTIONS.TOGGLE_MENU, payload:{mode: false}})
         }
     }

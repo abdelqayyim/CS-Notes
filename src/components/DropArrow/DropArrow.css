@@ -16,22 +16,20 @@
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    background: white;
     border: none;
     color: black;
+    background-color: transparent;
     transition-timing-function: ease-out;
     transition-duration: 0.2s;
 }
 .btn-dropdown.dark{
-    background-color: black;
+    color: white;
 }
 .arrowBtn.dark{
     color: white;
-    background-color: black;
 }
 .arrowBtn:hover{
     transform: scale(1.1);
-    border: 1px solid #3898ec;
 }
 .dropInfo{
     width: 200px;
@@ -47,6 +45,10 @@
     justify-content: center;
     border-radius: 5px;
 }
+.dropInfo.active ul{
+    background-color: #292C35;
+}
+
 .dropInfo > li{
     font-family:'Bitter', sans-serif;
     font-size: 1.5rem;;
@@ -71,7 +73,13 @@
 }
 .dropInfo.active{
     visibility: visible;
+    background-color: #292C35;
+    color: white;
+}
+.dropInfo.active.dark{
+    visibility: visible;
     background-color: white;
+    color: black;
 }
 
 

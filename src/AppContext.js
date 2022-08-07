@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer} from "react";
 import Message from "./components/message-popup/Message";
 import AddLanguagePopUp from './components/PopUps/AddLanguagePopUp';
 import DeleteLanguagePopUp from './components/PopUps/DeleteLanguagePopUp';
@@ -48,8 +48,6 @@ const AppContext = (props) => {
             case ACTIONS.FETCH_NOTES:
                 state.currentNotes = action.payload.notes
                 return { ...state }
-            case ACTIONS.SHOW_SPINNER:
-                return state;
             case ACTIONS.SHOW_INPUT_RESPONSE:
                 state.showInputResponse.isErrorInput = action.payload.isErrorInput;
                 state.showInputResponse.errorType = action.payload.errorType;
@@ -58,8 +56,10 @@ const AppContext = (props) => {
             case ACTIONS.IS_LOADING:
                 return state;
             case ACTIONS.TOGGLE_MENU:
-                state.activeDropMenu = action.payload.mode;
-                return { ...state };
+                return {
+                    ...state,
+                activeDropMenu: action.payload.mode
+                };
             case ACTIONS.DELETE_NOTE:
                 return state;
             case ACTIONS.CURRENT_LANGUAGE:
@@ -164,7 +164,6 @@ const AppContext = (props) => {
             },
             body: JSON.stringify(note),
         })
-          const data = await response;
         dispatch({ type: ACTIONS.HIDE_SPINNER, payload:{message: "Saving Note"} });
 
         if (response.ok) {
@@ -189,7 +188,6 @@ const AppContext = (props) => {
             },
             body: JSON.stringify(note),
         })
-          const data = await response;
           
           if (response.ok) {
             dispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: true,errorType: 'positive',message: 'Note Successfully Deleted',}})
@@ -214,7 +212,6 @@ const AppContext = (props) => {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         })
-          const data = await response;
           dispatch({ type: ACTIONS.HIDE_SPINNER, payload:{message: "Adding Language"} });
         if (response.ok) {
             dispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: true,errorType: 'positive',message: 'Language Successfully Added',}})
@@ -240,7 +237,6 @@ const AppContext = (props) => {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         })
-          const data = await response;
           dispatch({ type: ACTIONS.HIDE_SPINNER, payload: { message: "Deleting Language" } });
 
           if (response.ok) {
@@ -269,7 +265,6 @@ const AppContext = (props) => {
             },
             body: JSON.stringify(note),
           })
-          const data = await response;
           dispatch({ type: ACTIONS.HIDE_SPINNER, payload: { message: "Adding Note" } });
           if (response.ok) {
             dispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: true,errorType: 'positive',message: 'Note Successfully Added',}})

@@ -7,7 +7,6 @@
 } */
 .background{
     background-color: white;
-    /* background-color: black; */
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,7 +18,7 @@
 }
 
 .background.dark{
-    background-color: black;
+    background-color: #292C35;
     color: white
 }
 

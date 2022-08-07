@@ -11,7 +11,8 @@ const AddLanguagePopUp = (props)=>{
     const [overlayClicked, setOverlayClicked ] = useState(false);
 
     const overlayHandler = () => {
-        curr.callDispatch({type: ACTIONS.TOGGLE_ADD_LANGUAGE_POPUP})
+        curr.callDispatch({ type: ACTIONS.TOGGLE_ADD_LANGUAGE_POPUP })
+        setOverlayClicked(true);
     }
 
     const addNewLanguage = () => {
@@ -24,10 +25,12 @@ const AddLanguagePopUp = (props)=>{
             return
         }
         curr.addLanguage(input.toLowerCase());
+        setTimeout(()=>{
+            document.querySelector(`.btn`).click();//press the new button added
+        },500)
     }
 
     const enterKeyPress = (key) => {
-        console.log(key.code === "Enter")
         if (key.code === "Enter") {
             addNewLanguage();
         }

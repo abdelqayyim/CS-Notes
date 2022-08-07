@@ -1,4 +1,4 @@
-import React, {useContext, useRef, useCallback, useState} from 'react'; 
+import React, {useContext, useRef, useCallback} from 'react'; 
 import Note from '../note/Note';
 import './NoteDisplay.css';
 import { AppProvider } from '../../AppContext';
@@ -27,7 +27,7 @@ const NoteDisplay = (props) => {
             _id: curr.currentNote.id
         }
         curr.saveNote(curr.currentLanguage,noteToSave);
-    })
+    },[curr])
 
     const deleteNoteHandler = useCallback(async (detail) => {//detail is the code the user has inputted
         let noteToDelete = {
@@ -37,7 +37,7 @@ const NoteDisplay = (props) => {
             _id: curr.currentNote.id
         }
         curr.deleteNote(curr.currentLanguage,noteToDelete);
-    })
+    },[curr])
     
     if (curr.currentLanguage !== undefined && curr.currentNote.noteTitle === undefined) {
         return (
