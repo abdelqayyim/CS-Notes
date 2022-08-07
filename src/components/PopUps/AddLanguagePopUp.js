@@ -27,7 +27,7 @@ const AddLanguagePopUp = (props)=>{
         curr.addLanguage(input.toLowerCase());
         setTimeout(()=>{
             document.querySelector(`.btn`).click();//press the new button added
-        },500)
+        },100)
     }
 
     const enterKeyPress = (key) => {
