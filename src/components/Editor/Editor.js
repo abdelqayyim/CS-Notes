@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useContext } from "react";
+import React, { useRef, useState, useContext} from "react";
 import Prism from "prismjs";
 import "../Themes/prism.css";
 import "./Editor.css";
@@ -32,6 +32,7 @@ const Editor = (props) => {
   let note = useRef();
   let result = useRef();
   let pre = useRef();
+
 
   let noteLanguage = curr.currentLanguage;
   if (
@@ -83,12 +84,12 @@ const Editor = (props) => {
       .replace(new RegExp("&", "g"), "&")
       .replace(new RegExp("<", "g"), "<"); /* Global RegExp */
     // Syntax Highlight
-    Prism.highlightElement(result_element)
+    Prism.highlightElement(result_element);
     original = text;
   };
   let original = props.noteDetail.replace(/&gt;/gi, ">").replace(/&lt;(?! )/gi, "< ").replace(/&amp;/gi, "&").replace(/</gi, "<");
   // let original = props.noteDetail.replace(/&gt;/gi, "> ").replace(/&lt;/gi, "<").replace(/&amp;/gi, "& ").replace(/</gi, "< ");
-
+  console.log('rendered')
   // fixText(props.noteDetail)
 
   return (

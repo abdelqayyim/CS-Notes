@@ -137,6 +137,35 @@ const AppContext = (props) => {
         callDispatch: (action) => {
             dispatch(action);
         },
+        toggleMenu: (command) => {
+            let menu = document.querySelector('.dropInfo');
+        let isActive = menu.classList.contains('active');
+        let arrow = document.querySelector(".arrow");
+
+        if (command === 'toggle') {
+            if(!isActive){
+                menu.classList.add("active");
+                arrow.classList.remove("fa-angle-down");
+                arrow.classList.add("fa-angle-up");
+            }
+            else {
+                menu.classList.remove("active");
+                arrow.classList.add("fa-angle-down");
+                arrow.classList.remove("fa-angle-up");
+            }
+        }
+        else if (command === 'open') {
+            menu.classList.add("active");
+                arrow.classList.remove("fa-angle-down");
+                arrow.classList.add("fa-angle-up");
+        }
+        else if (command === 'close') {
+            menu.classList.remove("active");
+                arrow.classList.add("fa-angle-down");
+                arrow.classList.remove("fa-angle-up");
+            }
+        
+        },
         fetchLanguages: async () => {
             dispatch({ type: ACTIONS.SHOW_SPINNER, payload: { message: "Loading Languages" } });
             const response = await fetch(
