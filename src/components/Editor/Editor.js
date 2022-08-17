@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext} from "react";
+import React, { useRef, useState, useContext, useEffect} from "react";
 import Prism from "prismjs";
 import "../Themes/prism.css";
 import "./Editor.css";
@@ -17,6 +17,7 @@ import "prismjs/components/prism-swift";
 import "prismjs/components/prism-typescript";
 
 import { AppProvider } from "../../AppContext";
+import NoteLanguage from "../button/NoteLanguage";
 const Editor = (props) => {
   let deleteBtn = useRef();
   let saveBtn = useRef();
@@ -33,6 +34,7 @@ const Editor = (props) => {
   let result = useRef();
   let pre = useRef();
 
+ 
 
   let noteLanguage = curr.currentLanguage;
   if (
@@ -46,12 +48,20 @@ const Editor = (props) => {
     noteLanguage = "cs";
   }
 
-  const [showPop, setShowPop] = useState(false);
-  const [lang, setLang] = useState(props.currentLanguage);
+  const changeLang = (lang)=>{
+    // console.log(curr.currentNote)
+    console.log(lang)
+    props.onChangeNoteLanguage(lang)
+  }
 
-  const changeLang = () => {
-    setShowPop((prev) => !prev);
-  };
+
+
+  const factorLang = (lang) => {
+    if (lang === undefined) {
+      return curr.currentLanguage
+    }
+  }
+
   const syncScroll = (element) => {
     let res = pre.current;
     res.scrollTop = element.scrollTop;
@@ -89,18 +99,14 @@ const Editor = (props) => {
   };
   let original = props.noteDetail.replace(/&gt;/gi, ">").replace(/&lt;(?! )/gi, "< ").replace(/&amp;/gi, "&").replace(/</gi, "<");
   // let original = props.noteDetail.replace(/&gt;/gi, "> ").replace(/&lt;/gi, "<").replace(/&amp;/gi, "& ").replace(/</gi, "< ");
-  console.log('rendered')
   // fixText(props.noteDetail)
 
   return (
     <div className="code-section">
       <div className="code">
-        <div className="note-lang" onClick={changeLang}>
-          {noteLanguage === "cs" ? "c#" : noteLanguage}
-        </div>
+        <NoteLanguage noteLanguage={noteLanguage} changeLanguage={ changeLang}/>
 
-        {/* {showPop && <ChangeNoteLang closePop={changeLang} changeNoteLanguage={changeNoteLang}/>}
-      implemeting this after, I was not able to make it work */}
+        
 
         <textarea
           spellCheck={false}
@@ -117,7 +123,7 @@ const Editor = (props) => {
         </textarea>
 
 
-        <pre className={`language-${noteLanguage} script`} ref={pre}>
+        <pre className={`language-${factorLang(curr.currentNote.noteLanguage)} script`} ref={pre}>
           <code ref={result} className="highlight">
             {props.noteDetail.replace(/&gt;/gi, "> ").replace(/&lt;/gi, "< ").replace(/&lt/gi, "< ").replace(/&amp;/gi, "& ")}
           </code>

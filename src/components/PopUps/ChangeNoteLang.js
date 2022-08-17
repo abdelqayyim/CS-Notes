@@ -8,8 +8,7 @@ const ChangeNoteLang = (props) => {
     let noteLang = useRef();
     const clickHandler = () => {
         if (noteLang.current.value.length !== 0) {
-            curr.updateNoteLanguage(noteLang.current.value);
-            props.closePop();
+            props.saveChange(noteLang.current.value)
         }
     }
 

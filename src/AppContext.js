@@ -19,7 +19,8 @@ const ACTIONS = {
   DELETE_NOTE: "delete-note",
   CURRENT_LANGUAGE: "current-language",
   CHANGE_CURRENT_LANGUAGE: "change-current-language",
-  CHANGE_CURRENT_NOTE: "change-current-note",
+    CHANGE_CURRENT_NOTE: "change-current-note",
+  CHANGE_CURRENT_NOTE_LANGUAGE: 'change-current-note-language',
     HIDE_SPINNER: "hide-spinner",
     TOGGLE_ADD_LANGUAGE_POPUP: 'toggle-add-language-popup',
     TOGGLE_DELETE_LANGUAGE_POPUP: 'toggle-delete-language-popup',
@@ -73,6 +74,7 @@ const AppContext = (props) => {
                     noteDescription: undefined,
                     noteDetails: undefined,
                     noteID: undefined,
+                    noteLanguage: undefined
                 }
             
                 return { ...state }
@@ -82,7 +84,8 @@ const AppContext = (props) => {
                     noteTitle: action.payload.title,
                     noteDescription: action.payload.description,
                     noteDetail: action.payload.detail,
-                    id: action.payload.id
+                    noteID: action.payload.id,
+                    noteLanguage:action.payload.language
                 }
                 return { ...state };
             case ACTIONS.TOGGLE_ADD_LANGUAGE_POPUP:
@@ -121,8 +124,9 @@ const AppContext = (props) => {
         currentNote: {
             noteTitle: undefined,
             noteDescription: undefined,
-            noteDetails: undefined,
+            noteDetail: undefined,
             noteID: undefined,
+            noteLanguage: undefined,
         },
         showSpinner: { isShowing: false, spinnerMessage: undefined },
         showInputResponse: {
@@ -184,6 +188,7 @@ const AppContext = (props) => {
             dispatch({ type: ACTIONS.HIDE_SPINNER, payload: { message: "Loading Notes" } });
     },
       saveNote: async (language, note) => {
+        console.log(note)
           dispatch({ type: ACTIONS.SHOW_SPINNER, payload: { message: "Saving Note" } });
           const response = await fetch(`https://frequentquestions.herokuapp.com/languages/${language.toLowerCase()}/updateNote`, {
             method: 'PUT',
@@ -202,6 +207,7 @@ const AppContext = (props) => {
             }, 2000)
         }
         else {
+            console.log(response.text())
             dispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: true,errorType: 'negative',message: 'Problem Saving Note',}})
             setTimeout(() => { 
                 dispatch({type: ACTIONS.SHOW_INPUT_RESPONSE, payload: {isErrorInput: false,errorType: 'negative',message: 'Problem Saving Note',}})

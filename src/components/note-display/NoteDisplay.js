@@ -20,18 +20,34 @@ const NoteDisplay = (props) => {
   }
 
   const saveNoteHandler = useCallback(
-    async (detail) => {
+    async (detail,) => {
       //detail is the code the user has inputted
       let noteToSave = {
         title: title.current.innerText,
         description: description.current.innerText,
         noteDetail: detail,
-        _id: curr.currentNote.id,
+        _id: curr.currentNote.noteID,
+        language: curr.currentNote.noteLanguage
       };
       curr.saveNote(curr.currentLanguage, noteToSave);
     },
     [curr]
   );
+  const changeNoteLanguage = useCallback(
+    async (language) => {
+      //detail is the code the user has inputted
+      let noteToSave = {
+        title: curr.currentNote.noteTitle,
+        description: curr.currentNote.noteDescription,
+        noteDetail: curr.currentNote.noteDetail,
+        _id: curr.currentNote.noteID,
+        language: language
+      };
+      curr.saveNote(curr.currentLanguage, noteToSave);
+    },
+    [curr]
+  );
+
 
   const deleteNoteHandler = useCallback(
     async (detail) => {
@@ -93,6 +109,7 @@ const NoteDisplay = (props) => {
             noteDetail={curr.currentNote.noteDetail}
             onSave={saveNoteHandler}
             onDelete={deleteNoteHandler}
+            onChangeNoteLanguage={changeNoteLanguage}
                 />
             
             
