@@ -8,8 +8,8 @@ import AddNotePopUp from './components/PopUps/AddNotePopUp';
 
 //TASK: when a new language is added press it automaticall
 //TASK: when a new note is added press it automatically
-const URL = "http://localhost:8000/languages/";
-// const URL = "https://frequentquestions.herokuapp.com/languages/";
+// const URL = "http://localhost:8000/languages/";
+const URL = "https://frequentquestions.herokuapp.com/languages/";
 const ACTIONS = {
   FETCH_LANGUAGES: "fetch-languages",
   FETCH_NOTES: "fetch-notes",
