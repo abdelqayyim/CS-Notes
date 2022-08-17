@@ -8,7 +8,8 @@ import AddNotePopUp from './components/PopUps/AddNotePopUp';
 
 //TASK: when a new language is added press it automaticall
 //TASK: when a new note is added press it automatically
-
+const URL = "http://localhost:8000/languages/";
+// const URL = "https://frequentquestions.herokuapp.com/languages/";
 const ACTIONS = {
   FETCH_LANGUAGES: "fetch-languages",
   FETCH_NOTES: "fetch-notes",
@@ -173,7 +174,7 @@ const AppContext = (props) => {
         fetchLanguages: async () => {
             dispatch({ type: ACTIONS.SHOW_SPINNER, payload: { message: "Loading Languages" } });
             const response = await fetch(
-                "https://frequentquestions.herokuapp.com/languages/"
+                URL
             );
             const data = await response.json();
             dispatch({ type: ACTIONS.FETCH_LANGUAGES, payload: { d: data.reverse() } });
@@ -182,7 +183,7 @@ const AppContext = (props) => {
         fetchNotes: async (language) => {
             language = language.toLowerCase();
             dispatch({ type: ACTIONS.SHOW_SPINNER, payload: { message: "Loading Notes" } });
-            const response = await fetch(`https://frequentquestions.herokuapp.com/languages/${language}/getNotes`)
+            const response = await fetch(URL+`${language}/getNotes`)
             const data = await response.json();
             dispatch({ type: ACTIONS.FETCH_NOTES, payload: { notes: data.reverse() } });
             dispatch({ type: ACTIONS.HIDE_SPINNER, payload: { message: "Loading Notes" } });
@@ -190,7 +191,7 @@ const AppContext = (props) => {
       saveNote: async (language, note) => {
         console.log(note)
           dispatch({ type: ACTIONS.SHOW_SPINNER, payload: { message: "Saving Note" } });
-          const response = await fetch(`https://frequentquestions.herokuapp.com/languages/${language.toLowerCase()}/updateNote`, {
+          const response = await fetch(URL+`${language.toLowerCase()}/updateNote`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -215,7 +216,7 @@ const AppContext = (props) => {
         }
     },
       deleteNote: async (language, note) => {
-        const response = await fetch(`https://frequentquestions.herokuapp.com/languages/${language.toLowerCase()}/deleteNote`, {
+        const response = await fetch(URL+`${language.toLowerCase()}/deleteNote`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
@@ -240,7 +241,7 @@ const AppContext = (props) => {
     }, 
       addLanguage: async (language) => {
         dispatch({ type: ACTIONS.SHOW_SPINNER, payload: { message: "Adding Language" } });
-        const response = await fetch(`https://frequentquestions.herokuapp.com/languages/${language}`, {
+        const response = await fetch(URL+`${language}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -265,7 +266,7 @@ const AppContext = (props) => {
       },
       deleteLanguage: async (language) => {
           dispatch({ type: ACTIONS.SHOW_SPINNER, payload: { message: "Deleting Language" } });
-          const response = await fetch(` https://frequentquestions.herokuapp.com/languages/${language.toLowerCase()}`, {
+          const response = await fetch(URL+`${language.toLowerCase()}`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
@@ -292,7 +293,7 @@ const AppContext = (props) => {
       },
       addNote: async(language, note)=>{
           dispatch({ type: ACTIONS.SHOW_SPINNER, payload: { message: "Adding Note" } });
-          const response = await fetch(`https://frequentquestions.herokuapp.com/languages/${language}/newNote`, {
+          const response = await fetch(URL+`${language}/newNote`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

@@ -12,6 +12,7 @@ const NoteLanguage = (props) => {
     }
     const submitChange = (newLang) => {
         props.changeLanguage(newLang)
+        setShowNoteChange(false);
     }
     return (
         <Fragment>

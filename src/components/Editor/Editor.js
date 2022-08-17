@@ -26,6 +26,8 @@ const Editor = (props) => {
     document.querySelector(".textarea").value = props.noteDetail;
   }
 
+ 
+
   setTimeout(() => {
     Prism.highlightAll();
   }, 1000);
@@ -34,33 +36,65 @@ const Editor = (props) => {
   let result = useRef();
   let pre = useRef();
 
- 
+  const factorLangView = (lang) => { //this is the language the user sees
+    lang = lang === undefined? undefined: lang.toLowerCase();
 
-  let noteLanguage = curr.currentLanguage;
-  if (
-    curr.currentLanguage.slice(-2) === "js" ||
-    curr.currentLanguage === "react native"
-  ) {
-    //should create a function for this
-    noteLanguage = "javascript";
-  } else if (curr.currentLanguage === "csharp") {
-    //should create a function for this
-    noteLanguage = "cs";
-  }
-
-  const changeLang = (lang)=>{
-    // console.log(curr.currentNote)
-    console.log(lang)
-    props.onChangeNoteLanguage(lang)
-  }
-
-
-
-  const factorLang = (lang) => {
     if (lang === undefined) {
-      return curr.currentLanguage
+      return factorLangView(curr.currentLanguage)
+    }
+    else if (lang.slice(-2) === 'js'|| lang === 'react native' || lang === 'javascript' || lang === 'js') {
+      return "javascript";
+    }
+    else if (lang === "csharp" || lang === 'c#') {
+      return "c#"
+    }
+    else if (lang === "cpp" || lang === 'c++') {
+      return "c++"
+    }
+    else if (lang === "py" || lang === 'python') {
+      return "python"
+    }
+    else if (lang === "java") {
+      return "java"
+    }
+    else{
+      return "python"
     }
   }
+  const factorLangHTML = (lang) => { //this is the language in the background for prismJS
+    lang = lang === undefined? undefined: lang.toLowerCase();
+    lang = factorLangView(lang);
+    
+    if (lang === 'javascript') {
+      return "javascript";
+    }
+    else if (lang === 'c#') {
+      return 'csharp'
+    }
+    else if (lang === 'c++') {
+      return 'cpp'
+    }
+    else if (lang === 'python') {
+      return "python"
+    }
+    if (lang === "java") {
+      return "java"
+    }
+  }
+
+ 
+
+  let noteLanguage = factorLangHTML(curr.currentNote.noteLanguage);
+
+
+  const changeLang = (lang)=>{
+    setL(lang);
+    props.onChangeNoteLanguage(lang, note.current.value)
+    setTimeout(()=>{document.querySelector(`.selected`).click()},500)
+  }
+
+
+  const [l, setL] = useState(factorLangView(curr.currentNote.noteLanguage));
 
   const syncScroll = (element) => {
     let res = pre.current;
@@ -104,7 +138,7 @@ const Editor = (props) => {
   return (
     <div className="code-section">
       <div className="code">
-        <NoteLanguage noteLanguage={noteLanguage} changeLanguage={ changeLang}/>
+        <NoteLanguage noteLanguage={l} changeLanguage={ changeLang}/>
 
         
 
@@ -123,7 +157,7 @@ const Editor = (props) => {
         </textarea>
 
 
-        <pre className={`language-${factorLang(curr.currentNote.noteLanguage)} script`} ref={pre}>
+        <pre className={`language-${noteLanguage} script`} ref={pre}>
           <code ref={result} className="highlight">
             {props.noteDetail.replace(/&gt;/gi, "> ").replace(/&lt;/gi, "< ").replace(/&lt/gi, "< ").replace(/&amp;/gi, "& ")}
           </code>

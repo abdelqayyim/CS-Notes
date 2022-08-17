@@ -34,12 +34,12 @@ const NoteDisplay = (props) => {
     [curr]
   );
   const changeNoteLanguage = useCallback(
-    async (language) => {
+    async (language, text) => {
       //detail is the code the user has inputted
       let noteToSave = {
         title: curr.currentNote.noteTitle,
         description: curr.currentNote.noteDescription,
-        noteDetail: curr.currentNote.noteDetail,
+        noteDetail: text,
         _id: curr.currentNote.noteID,
         language: language
       };
@@ -76,7 +76,7 @@ const NoteDisplay = (props) => {
             key={note._id}
             noteDetail={note.noteDetail}
             noteId={note._id}
-            noteLanguage={note.noteLanguage}
+            noteLanguage={note.language}
           />
         ))}
       </div>
