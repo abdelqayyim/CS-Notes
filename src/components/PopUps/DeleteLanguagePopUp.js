@@ -43,7 +43,7 @@ const DeleteLanguagePopUp = (props) => {
             <div className='delete-overlay-container' onKeyPress={enterKeyPress}>
                 <div className={overlayClicked? "delete-overlay": "delete-overlay active" } ref={overlay} onClick={overlayHandler}></div>
                 <div className={overlayClicked? "deletelanguage-popup": "deletelanguage-popup active" }>
-                    <input placeholder='Name' className='deleteLang-input' ref={inputName}></input>
+                    <input placeholder='Name' className='deleteLang-input' ref={inputName} autoFocus="true"></input>
                     <button className='delete-btn' onClick={deleteLanguage}>Delete</button>
                 </div>
             </div>

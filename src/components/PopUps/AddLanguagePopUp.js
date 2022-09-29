@@ -41,7 +41,7 @@ const AddLanguagePopUp = (props)=>{
             <div className='overlay-container' onKeyPress={enterKeyPress}>
                 <div className={overlayClicked? "overlay": "overlay active" } ref={overlay} onClick={overlayHandler}></div>
                 <div className={overlayClicked? "addlanguage-popup": "addlanguage-popup active" }>
-                    <input placeholder='Name' className='newLang-input' ref={inputName}></input>
+                    <input placeholder='Name' className='newLang-input' ref={inputName} autoFocus="true"></input>
                     <button className='add-btn' onClick={addNewLanguage}>ADD</button>
                 </div>
             </div>

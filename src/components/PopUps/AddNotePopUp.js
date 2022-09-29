@@ -42,7 +42,7 @@ const AddNotePopUp = (props) => {
             <div className='newNote-container' onKeyPress={enterKeyPress}>
                 <div className={overlayClicked? "overlay": "overlay active" } ref={overlay} onClick={overlayHandler}></div>
                 <div className={overlayClicked? "newNote-popup": "newNote-popup active" }>
-                    <input placeholder='Title' className='newNote-title' ref={newTitle}></input>
+                    <input placeholder='Title' className='newNote-title' ref={newTitle} autoFocus="true"></input>
                     {/* <input placeholder='Description' className='newNote-description'></input> */}
                     <textarea className='newNote-description' placeholder='Description' ref={newDescription}></textarea>
                     <button className='newNote-btn' onClick={addNewNoteHandler}>ADD</button>
