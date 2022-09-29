@@ -77,7 +77,7 @@
   right: 0;
   margin-right: 5px;
   color: rgb(202, 88, 202);
-  opacity: 0.3;
+  opacity: 0.7;
 }
 .note-lang:hover {
   opacity: 1;
@@ -94,6 +94,9 @@
   margin-right: 0;
   margin-bottom: 5px;
   font-size: 1rem;
+}
+.btn-note:hover{
+  transform: scale(1.05);
 }
 /* phone portrait */
 @media screen and (max-width: 500px) {

@@ -11,6 +11,8 @@
     justify-content: flex-start;
     overflow-y: scroll;
     padding-top: 1px;
+    background-color: #3f434c;
+    border-radius: 5px;
 }
 .note-suggestion::-webkit-scrollbar {
     display: none;
@@ -31,10 +33,12 @@
         align-items: center;
         justify-content: flex-start;
         max-height: calc(100vh - 30vh);
+        min-height: calc(100vh - 30vh);
     }
 }
 @media screen and (min-width: 1000px) {
     .note-suggestion{
         max-height: calc(100vh - 18vh);
+        min-height: calc(100vh - 18vh);
     }
 }
