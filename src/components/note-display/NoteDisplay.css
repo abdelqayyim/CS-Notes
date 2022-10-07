@@ -45,6 +45,7 @@ p{
 .description:focus, .description:hover{
     transform: scale(1.01);
     background-color: #3f434c !important;
+    color: white;
 }
 .title.dark, .description.dark{
     background-color: #292C35;

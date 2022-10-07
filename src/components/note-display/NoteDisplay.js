@@ -1,9 +1,9 @@
 import React, { useContext, useRef, useCallback } from "react";
 import Note from "../note/Note";
 import "./NoteDisplay.css";
-import { AppProvider } from "../../AppContext";
+import { AppProvider} from "../../AppContext";
 import Editor from "../Editor/Editor";
-import NoteSuggestion from "./NoteSuggestion";
+
 
 const NoteDisplay = (props) => {
   const curr = useContext(AppProvider);
@@ -18,6 +18,8 @@ const NoteDisplay = (props) => {
     }
     return str.join(" ");
   }
+
+  
 
   const saveNoteHandler = useCallback(
     async (detail,) => {
@@ -114,8 +116,6 @@ const NoteDisplay = (props) => {
             
             
         </div>
-
-        <NoteSuggestion notes={curr.currentNotes} />
       </div>
     );
   }

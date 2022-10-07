@@ -1,0 +1,29 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.input-box {
+	resize: none;
+	width: 99%;
+	/* min-height: 100px; */
+    height: 100%;
+	box-sizing: border-box;
+    background-color: transparent;
+    padding: 0.8rem;
+    position: absolute;
+    font-size: 1rem;
+    font-family: monospace;
+    border-radius: 5px;
+    line-height: 1.5;
+    z-index: 1;
+    outline: none;
+    border: none;
+    color: transparent;
+    caret-color: white;
+    border-bottom: 1px solid white;
+}
+/* .input-box:focus{
+    border: 2px solid white;
+} */

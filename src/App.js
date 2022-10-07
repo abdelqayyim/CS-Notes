@@ -37,3 +37,7 @@ function App() {
 
 // TASK: page transitions maybe/
 export default App;
+
+// TODO: 
+// 1 - create two new components, one for the text note and one for note Image
+
