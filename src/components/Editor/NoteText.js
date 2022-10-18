@@ -3,6 +3,7 @@ import "./NoteText.css";
 
 import Prism from "prismjs";
 import "../Themes/prismc.css";
+import ShiftBtn from "./ShiftBtn";
 
 import "prismjs/components/prism-python";
 import "prismjs/components/prism-c";
@@ -28,10 +29,6 @@ const NoteText = (props) => {
     const inputText = useRef();
     const output = useRef();
   const pre = useRef();
-  
-  // if (document.querySelectorAll(".input-box").length === 0) {
-  //   console.log("GOTEEEEMMMM")
-  // }
 
     const update = (text) => {
         let result_element = output.current;
@@ -92,6 +89,42 @@ const NoteText = (props) => {
           element.selectionEnd = cursor_pos;
           update(element.value); // Update text to include indent
         }
+        else if (e.key === `'`) {
+          console.log("Parantheses was pressed");
+          e.preventDefault(); // stop normal
+        let before_paranthesis = code.slice(0, element.selectionStart); // text before tab
+        let after_paranthesis = code.slice(element.selectionEnd, element.value.length); // text after tab
+        let cursor_pos = element.selectionEnd + 1; // where cursor moves after tab - moving forward by 1 char to after tab
+        element.value = before_paranthesis + `''` + after_paranthesis; // add tab char
+        // move cursor
+        element.selectionStart = cursor_pos;
+        element.selectionEnd = cursor_pos;
+        update(element.value); // Update text to include indent
+        }
+        else if (e.key === `[`) {
+          console.log("Parantheses was pressed");
+          e.preventDefault(); // stop normal
+        let before_paranthesis = code.slice(0, element.selectionStart); // text before tab
+        let after_paranthesis = code.slice(element.selectionEnd, element.value.length); // text after tab
+        let cursor_pos = element.selectionEnd + 1; // where cursor moves after tab - moving forward by 1 char to after tab
+        element.value = before_paranthesis + `[]` + after_paranthesis; // add tab char
+        // move cursor
+        element.selectionStart = cursor_pos;
+        element.selectionEnd = cursor_pos;
+        update(element.value); // Update text to include indent
+        }
+        else if (e.key === `{`) {
+          console.log("Parantheses was pressed");
+          e.preventDefault(); // stop normal
+        let before_paranthesis = code.slice(0, element.selectionStart); // text before tab
+        let after_paranthesis = code.slice(element.selectionEnd, element.value.length); // text after tab
+        let cursor_pos = element.selectionEnd + 1; // where cursor moves after tab - moving forward by 1 char to after tab
+        element.value = before_paranthesis + `{}` + after_paranthesis; // add tab char
+        // move cursor
+        element.selectionStart = cursor_pos;
+        element.selectionEnd = cursor_pos;
+        update(element.value); // Update text to include indent
+      }
     };
   
     // const update = (text) => {
@@ -114,11 +147,14 @@ const NoteText = (props) => {
         let res = pre.current;
         res.scrollTop = element.scrollTop;
         res.scrollLeft = element.scrollLeft;
-      };
+    };
+  const handler = () => {
+    console.log("clicked")
+  }
 
   return (
-    <div>
-          
+    <div className="textbox-container">
+      <ShiftBtn moveUp={()=>props.moveUp(props.codeText)}></ShiftBtn>
       <textarea type="text"
             className="input-box detail"
               onInput={() => update(inputText.current.value)}
@@ -140,5 +176,4 @@ const NoteText = (props) => {
 };
 
 export default NoteText;
-// TODO: might want to look into cropper.js
-//       The new code exerpt should say "insert code here"
+// TODO: add a button to the images and the text boxes so you an press it and move thier positions

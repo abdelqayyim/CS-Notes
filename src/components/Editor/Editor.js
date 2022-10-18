@@ -132,8 +132,26 @@ const Editor = (props) => {
   else {
     curr.currentNote.noteDetail.forEach((n) => {
       original.push(n);
+
     });
   }
+  const moveComponentHandler = (text) => { //move the component's position up withing the array 
+    console.log(noteD)
+    let index;
+    noteD.forEach((note, i) => {
+      console.log(props.note)
+      // console.log(note.props.codeText === text)
+      // if (note.props.codeText === text && i !== 0) {
+      //   index = i;
+      //   let temp = noteD;
+      //   [temp[i], temp[i + 1]] = [temp[i + 1], temp[i]]
+      //   setNoteD(prev=>temp)
+      // }
+    })
+  }
+
+
+
   
   let initialArray = [];
   
@@ -142,14 +160,14 @@ const Editor = (props) => {
     note.forEach((x) => {
       if (Object.keys(x)[0] === "text") {
         temp.push(
-          <NoteText codeText={x.text.replace(/&gt;/gi, ">").replace(/&lt;(?! )/gi, "< ").replace(/&amp;/gi, "&").replace(/</gi, "<")} key={Math.random()}language={l}>
+          <NoteText codeText={x.text.replace(/&gt;/gi, ">").replace(/&lt;(?! )/gi, "< ").replace(/&amp;/gi, "&").replace(/</gi, "<")} key={Math.random()}language={l} moveUp={ moveComponentHandler}>
             {" "}
           </NoteText>
         );
       }
       else if (typeof x === 'string') {
         temp.push(
-          <NoteText codeText={x.replace(/&gt;/gi, ">").replace(/&lt;(?! )/gi, "< ").replace(/&amp;/gi, "&").replace(/</gi, "<")} key={Math.random() }language={l}>
+          <NoteText codeText={x.replace(/&gt;/gi, ">").replace(/&lt;(?! )/gi, "< ").replace(/&amp;/gi, "&").replace(/</gi, "<")} key={Math.random()} language={l} moveUp={ moveComponentHandler}>
             {" "}
           </NoteText>
         );

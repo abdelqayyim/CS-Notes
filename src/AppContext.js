@@ -116,7 +116,8 @@ const AppContext = (props) => {
     };
 
     const userCurrentTime = new Date().getHours();
-    let mode = (userCurrentTime >= 18 || userCurrentTime <= 8) ? 'dark' : 'light';
+    // let mode = (userCurrentTime >= 18 || userCurrentTime <= 8) ? 'dark' : 'light';
+    let mode = 'dark';
     const initialState = {
         currentAppMode: mode,
         currentLanguage: undefined,

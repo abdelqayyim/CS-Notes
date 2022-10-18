@@ -13,7 +13,8 @@ import ToggleMode from './components/ToggleMode/ToggleMode';
 //TASK: Add SVG spinner while loading the languages
 function App() {
   const userCurrentTime = new Date().getHours();
-  let mode = (userCurrentTime >= 18 || userCurrentTime <= 8) ? 'dark' : 'light';
+  let mode = 'dark';
+  // let mode = (userCurrentTime >= 18 || userCurrentTime <= 8) ? 'dark' : 'light';
   const [move, setMove] = useState(false);
 
   const moveUp = () => {//this shift the title and language up when a language is pressed
@@ -29,7 +30,7 @@ function App() {
         <LanguagesBox moveUp={moveUp} />
         <NoteDisplay/>
       </Background>
-      <ToggleMode toggleMode={ toggleMode} />
+      {/* <ToggleMode toggleMode={ toggleMode} /> */}
     </AppContext>
     
   );
