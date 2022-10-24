@@ -43,10 +43,9 @@ const NoteText = (props) => {
           .replace(new RegExp("<", "g"), "<"); /* Global RegExp */
         // Syntax Highlight
         Prism.highlightElement(result_element);
-        // original = text;
 
         let inputBoxes = document.querySelectorAll(".input-box");
-      inputBoxes.forEach(box => {
+        inputBoxes.forEach(box => {
         box.style.height = "1px";
         box.style.height = (25 + box.scrollHeight) + "px";
       })
@@ -126,35 +125,19 @@ const NoteText = (props) => {
         update(element.value); // Update text to include indent
       }
     };
-  
-    // const update = (text) => {
-    //   let result_element = result.current;
-    //   // Handle final newlines (see article)
-    //   if (text[text.length - 1] === "\n") {
-    //     // If the last character is a newline character
-    //     text += " "; // Add a placeholder space character to the final line
-    //   }
-    //   // Update code
-    //   result_element.innerHTML = text
-    //     .replace(new RegExp("&", "g"), "&")
-    //     .replace(new RegExp("<", "g"), "<"); /* Global RegExp */
-    //   // Syntax Highlight
-    //   Prism.highlightElement(result_element);
-    //   original = text;
-    // };
 
     const syncScroll = (element) => {
         let res = pre.current;
         res.scrollTop = element.scrollTop;
         res.scrollLeft = element.scrollLeft;
     };
-  const handler = () => {
-    console.log("clicked")
+  const move = () => {
+    props.onMoveUp(props.index)
   }
 
   return (
     <div className="textbox-container">
-      <ShiftBtn moveUp={()=>props.moveUp(props.codeText)}></ShiftBtn>
+      <ShiftBtn move={move} className="textShift"></ShiftBtn>
       <textarea type="text"
             className="input-box detail"
               onInput={() => update(inputText.current.value)}

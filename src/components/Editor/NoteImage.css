@@ -38,10 +38,10 @@
     opacity: 1;
 }
 .edit-imgBtn{
-    right: 0;
+    left: 110px;
 }
 .delete-imgBtn{
-    left: 0;
+    left: 40px;
 }
 label{
     cursor: pointer;

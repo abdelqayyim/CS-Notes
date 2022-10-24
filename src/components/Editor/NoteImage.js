@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./NoteImage.css";
+import ShiftBtn from "./ShiftBtn";
 
 const NoteImage = (props) => {
   const editImg = () => {
@@ -21,8 +22,12 @@ const [currentImg, setCurrentImg] = useState(props.imageData)
     };
     reader.readAsDataURL(file.current.files[0]);
   };
+  const move = () => {
+    props.onMoveUp(props.index)
+  }
   return (
     <div className="img-container">
+      <ShiftBtn move={move} className="imgShift"></ShiftBtn>
       <div className="delete-imgBtn imgBtn" onClick={deleteImg}>
         Delete
       </div>
@@ -31,8 +36,6 @@ const [currentImg, setCurrentImg] = useState(props.imageData)
           Edit
               <input type="file" ref={file} id="inputTag" className="input-img" onClick={editImg} onChange={ changeImage} />
         </label>
-          
-      {/* <div className='edit-imgBtn imgBtn' onClick={editImg}>Edit</div> */}
       <img
         className="img detail"
         type="image"

@@ -190,7 +190,6 @@ const AppContext = (props) => {
             dispatch({ type: ACTIONS.HIDE_SPINNER, payload: { message: "Loading Notes" } });
     },
       saveNote: async (language, note) => {
-        console.log(note)
           dispatch({ type: ACTIONS.SHOW_SPINNER, payload: { message: "Saving Note" } });
           const response = await fetch(URL+`${language.toLowerCase()}/updateNote`, {
             method: 'PUT',

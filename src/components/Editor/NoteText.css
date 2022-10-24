@@ -9,7 +9,8 @@
 	width: 99%;
 	box-sizing: border-box;
     background-color: transparent;
-    padding: 0.8rem;
+    padding-top: 1.2rem;
+    padding-left: 1rem;
     position: absolute;
     font-size: 1rem;
     font-family: monospace;

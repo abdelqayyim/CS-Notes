@@ -2,9 +2,8 @@ import React from 'react';
 import './ShiftBtn.css';
 
 const ShiftBtn = (props) => {
-    
     return (
-        <div className="shift-btn" onClick={props.moveUp}>
+        <div className={`shift-btn ${props.className}`} onClick={props.move}>
             <i class="fa-solid fa-arrow-up"></i>
         </div>
     )
