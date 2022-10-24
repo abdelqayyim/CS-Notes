@@ -21,6 +21,9 @@
 .visual-section{
   width: 100%;
 }
+.addFile-btn{
+  background-color: #3898ec;
+}
 .delete{
   background-color: rgb(216, 73, 73);
 }

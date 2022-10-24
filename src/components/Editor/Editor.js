@@ -264,12 +264,18 @@ const Editor = (props) => {
             Delete
           </button>
 
-          <input
+          {/* <input
             type="file"
             // className="btn-note"
             onChange={addImage}
             ref={file}
-          ></input>
+          ></input> */}
+
+          <label for="addFile" className="addFile-btn btn">
+            Add File
+              <input type="file" ref={file} id="addFile" onChange={addImage} className="input-img"/>
+          </label>
+
           <button
             className="btn-note save"
             ref={saveBtn}
