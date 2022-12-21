@@ -45,5 +45,5 @@ const [currentImg, setCurrentImg] = useState(props.imageData)
     </div>
   );
 };
-// TODO: add delete button
+// TODO: deleting image is not possible when you edit it
 export default NoteImage;
