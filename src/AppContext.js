@@ -9,7 +9,7 @@ import AddNotePopUp from './components/PopUps/AddNotePopUp';
 //TASK: when a new language is added press it automaticall
 //TASK: when a new note is added press it automatically
 // const URL = "http://localhost:8000/languages/";
-const URL = "https://frequentquestions.herokuapp.com/languages/";
+const URL = "https://fair-teal-gharial-coat.cyclic.app/languages/";
 const ACTIONS = {
   FETCH_LANGUAGES: "fetch-languages",
   FETCH_NOTES: "fetch-notes",
@@ -116,7 +116,8 @@ const AppContext = (props) => {
     };
 
     const userCurrentTime = new Date().getHours();
-    let mode = (userCurrentTime >= 18 || userCurrentTime <= 8) ? 'dark' : 'light';
+    // let mode = (userCurrentTime >= 18 || userCurrentTime <= 8) ? 'dark' : 'light';
+    let mode = 'dark';
     const initialState = {
         currentAppMode: mode,
         currentLanguage: undefined,
@@ -189,7 +190,6 @@ const AppContext = (props) => {
             dispatch({ type: ACTIONS.HIDE_SPINNER, payload: { message: "Loading Notes" } });
     },
       saveNote: async (language, note) => {
-        console.log(note)
           dispatch({ type: ACTIONS.SHOW_SPINNER, payload: { message: "Saving Note" } });
           const response = await fetch(URL+`${language.toLowerCase()}/updateNote`, {
             method: 'PUT',

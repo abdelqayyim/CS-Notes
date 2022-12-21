@@ -1,25 +1,27 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useRef} from "react";
 import "./NoteSuggestion.css";
 import { AppProvider } from "../../AppContext";
 import Note from "../note/Note";
 
 const NoteSuggestion = (props) => {
-    const curr = useContext(AppProvider);
+  const curr = useContext(AppProvider);
+  const changeNote = (e) => {
+    console.log(e)
+  }
   return (
-    <div className="note-suggestion">
-      {props.notes.map(
-        (note) =>
-          note._id !== curr.currentNote.id && (
-            <Note
-                      title={note.title}
-                      description={note.description}
-                      noteId={note._id}
-                      key={note._id}
-                      noteDetail={note.noteDetail}
-                      noteLanguage={note.noteLanguage}
-            />
-          )
-      )}
+    <div className="note-suggestion" onClick={props.onChange}>
+      {props.notes.map((note) => {
+        if (note._id !== curr.currentNote.noteID) {
+          return ( <Note
+            title={note.title}
+            description={note.description}
+            noteId={note._id}
+            key={note._id}
+            noteDetail={note.noteDetail}
+            noteLanguage={note.noteLanguage}
+          />)
+        }
+      })}
     </div>
   );
 };

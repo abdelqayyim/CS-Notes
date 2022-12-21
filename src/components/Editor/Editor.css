@@ -7,15 +7,22 @@
 .code {
   position: relative;
   border: 1px solid #dddd;
-  background-color: #dddd;
+  background: #36372f;
   width: 100%;
   border-radius: 5px;
   padding: 5px;
   min-height: 500px;
+  max-height: 500px;
   z-index: 0;
-
   font-family: monospace;
   line-height: 1.5;
+  overflow: scroll;
+}
+.visual-section{
+  width: 100%;
+}
+.addFile-btn{
+  background-color: #3898ec;
 }
 .delete{
   background-color: rgb(216, 73, 73);
@@ -23,7 +30,6 @@
 .save{
   background-color: rgb(50, 127, 50);
 }
-
 
 .textarea {
   background-color: transparent;
@@ -83,7 +89,10 @@
   opacity: 1;
 }
 .code-section {
-  width: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .btn-note {
   display: flex;
