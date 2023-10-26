@@ -1,5 +1,5 @@
 import React, {useRef} from "react";
-import "./NoteText.css";
+import styles from "./NoteText.module.css";
 
 import Prism from "prismjs";
 import "../Themes/prismc.css";
@@ -139,13 +139,14 @@ const NoteText = (props) => {
     <div className="textbox-container">
       <ShiftBtn move={move} className="textShift"></ShiftBtn>
       <textarea type="text"
-            className="input-box detail"
-              onInput={() => update(inputText.current.value)}
-              onKeyDown={(e) => checkKey(inputText.current, e)}
-            wrap="off"
+        className="input-box detail"
+        onInput={() => update(inputText.current.value)}
+        onKeyDown={(e) => checkKey(inputText.current, e)}
+        wrap="off"
         ref={inputText}
         placeholder="Insert code here"
-        onScroll={() => syncScroll(inputText.current)}>
+        onScroll={() => syncScroll(inputText.current)}
+        >
         {props.codeText}
         </textarea>
 

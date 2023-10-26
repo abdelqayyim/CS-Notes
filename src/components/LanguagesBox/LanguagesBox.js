@@ -24,8 +24,8 @@ const LanguagesBox = (props) => {
     return (
         <div className='top-div'>
             <div className='languages-box'>
-                { curr.currentLanguages.map(language => {
-                    return <LanguageButton name={titleCase(language.name)} key={language._id} moveUp={props.moveUp} />
+                {curr.currentLanguages.map(language => {
+                    return <LanguageButton name={titleCase(language.name)} id={language._id } key={language._id} moveUp={props.moveUp} />
                 })}
                 <DropArrow/>
             </div>

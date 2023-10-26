@@ -20,9 +20,9 @@ const NoteDisplay = (props) => {
   }
 
   
-
   const saveNoteHandler = useCallback(
     async (detail,) => {
+      let id = curr.currentLanguages.filter((language) => language.name === curr.currentLanguage)[0]._id;
       //detail is the code the user has inputted
       let noteToSave = {
         title: title.current.innerText,
@@ -31,12 +31,13 @@ const NoteDisplay = (props) => {
         _id: curr.currentNote.noteID,
         language: curr.currentNote.noteLanguage
       };
-      curr.saveNote(curr.currentLanguage, noteToSave);
+      curr.saveNote(id, noteToSave);
     },
     [curr]
   );
   const changeNoteLanguage = useCallback(
     async (language, text) => {
+      let id = curr.currentLanguages.filter((language) => language.name === curr.currentLanguage)[0]._id;
       //detail is the code the user has inputted
       let noteToSave = {
         title: curr.currentNote.noteTitle,
@@ -45,7 +46,7 @@ const NoteDisplay = (props) => {
         _id: curr.currentNote.noteID,
         language: language
       };
-      curr.saveNote(curr.currentLanguage, noteToSave);
+      curr.saveNote(id, noteToSave);
     },
     [curr]
   );
@@ -53,6 +54,7 @@ const NoteDisplay = (props) => {
 
   const deleteNoteHandler = useCallback(
     async (detail) => {
+      let id = curr.currentLanguages.filter((language) => language.name === curr.currentLanguage)[0]._id;
       //detail is the code the user has inputted
       let noteToDelete = {
         title: title.current.innerText,
@@ -60,7 +62,7 @@ const NoteDisplay = (props) => {
         noteDetail: detail,
         _id: curr.currentNote.id,
       };
-      curr.deleteNote(curr.currentLanguage, noteToDelete);
+      curr.deleteNote(id, noteToDelete);
     },
     [curr]
   );

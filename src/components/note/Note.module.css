@@ -1,0 +1,83 @@
+/* *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+*::-webkit-scrollbar{
+    display: none;
+} */
+.note-info{
+    max-height: 200px;
+    min-height: 200px;
+    width: 200px;
+    border: 1px solid #DDDD;
+    border-radius: 5px;
+    margin: 10px;
+    overflow: hidden;
+}
+.note-info:hover{
+    /* transform: scale(1.03); */
+    border: 1px solid #3898ec;
+}
+.note-info.dark{
+    color: white;
+}
+.note-title{
+    height: 20%;
+    font-size: 1rem;
+    padding: 5px 5px;
+    margin-bottom: 2px;
+    font-weight: bold;
+    display: flex;
+    flex: row;
+    align-items: center;
+}
+.note-description{
+    padding: 5px;
+    height: 80%;
+    overflow-y: scroll;
+    font-size: 1rem;
+
+    overflow:hidden;
+  line-height: 1.5rem;
+  max-height: 8rem;
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 5
+
+}
+.myHR{
+    color: black;
+    width: 90%;
+    align-self: center;
+    height: 1px;
+    border: 0.5px solid rgba(244, 242, 242, 0.867);
+}
+.note-info:hover .myHR{
+    border: 1px solid #3898ec;
+}
+
+@media screen and (max-width: 480px) {
+    .note-info{
+        max-width: 150px;
+        min-height: 150px;
+    }
+    .note-title{
+        font-size: 0.6rem;
+        overflow:hidden;
+  line-height: 1.5rem;
+  max-height: 8rem;
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1
+    }
+    .note-description{
+        font-size: 0.4rem;
+    }
+}

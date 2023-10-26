@@ -181,17 +181,16 @@ const AppContext = (props) => {
             dispatch({ type: ACTIONS.FETCH_LANGUAGES, payload: { d: data.reverse() } });
             dispatch({ type: ACTIONS.HIDE_SPINNER, payload: { message: "Loading Languages" } });
         },
-        fetchNotes: async (language) => {
-            language = language.toLowerCase();
+        fetchNotes: async (language_id) => {
             dispatch({ type: ACTIONS.SHOW_SPINNER, payload: { message: "Loading Notes" } });
-            const response = await fetch(URL+`${language}/getNotes`)
+            const response = await fetch(URL+`${language_id}/getNotes`)
             const data = await response.json();
             dispatch({ type: ACTIONS.FETCH_NOTES, payload: { notes: data.reverse() } });
             dispatch({ type: ACTIONS.HIDE_SPINNER, payload: { message: "Loading Notes" } });
     },
-      saveNote: async (language, note) => {
+      saveNote: async (language_id, note) => {
           dispatch({ type: ACTIONS.SHOW_SPINNER, payload: { message: "Saving Note" } });
-          const response = await fetch(URL+`${language.toLowerCase()}/updateNote`, {
+          const response = await fetch(URL+`${language_id}/updateNote`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',

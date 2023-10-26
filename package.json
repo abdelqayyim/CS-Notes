@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.2",
     "@fortawesome/fontawesome-svg-core": "^6.1.2",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -12,10 +13,11 @@
     "@testing-library/user-event": "^13.5.0",
     "babel-plugin-prismjs": "^2.1.0",
     "cors": "^2.8.5",
+    "next": "^13.5.4",
     "prismjs": "^1.28.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-syntax-highlighter": "^15.5.0",
     "react-syntax-highlighter-virtualized-renderer": "^1.1.0",
     "stream": "^0.0.2",
@@ -29,7 +31,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "react-scripts dev"
   },
   "eslintConfig": {
     "extends": [

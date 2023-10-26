@@ -9,6 +9,8 @@ const AddNotePopUp = (props) => {
     let overlay = useRef();
     let newTitle = useRef();
     let newDescription = useRef();
+    let id = curr.currentLanguages.filter((language) => language.name === curr.currentLanguage)[0]._id;
+
     const overlayHandler = () => {
         curr.callDispatch({type: ACTIONS.TOGGLE_ADD_NOTE_POPUP})
     }
@@ -28,7 +30,7 @@ const AddNotePopUp = (props) => {
             "noteDetail": "",
             "_id": 0
         }
-        curr.addNote(curr.currentLanguage, newNote);
+        curr.addNote(id, newNote);
     }
     const enterKeyPress = (key) => {
         console.log(key.code === "Enter")
